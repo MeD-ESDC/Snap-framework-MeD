@@ -1,0 +1,113 @@
+
+
+$icons: (
+	0:  tip,
+	1:  information,
+	2:  dyk,
+	3:	warning,
+	4:	exam,
+	5: 	click,
+	6:	alarm,
+	7:	clock,
+	8:	graph,
+	9:	docs,
+	10:	links,
+	11:	activity,
+	12:	magnifyingGlass
+);
+
+
+
+/*-----BOTH -----*/
+
+.ribbon, .ribbon-top, .circle-icon{
+	min-height: 100px;
+	&:before{
+    	content: '';
+		position:absolute;
+    	display: block;
+	}
+}
+
+
+
+.ribbon {
+	padding-left: 50px;
+	padding-top:30px;
+  &:before {
+    margin-left: -74px;
+	margin-top: -30px;
+    background-image: url(base/ico_bundle_ribbons.png);
+    width: 70px;
+    height: 90px;
+  }
+  h2 {
+    margin: 3px 0px 30px 0px;
+	}
+}
+
+/* ----------------RIBBONS TOP----------------*/
+
+.ribbon-top {
+	//clear:both;
+  padding-left: 40px;
+  &:before {
+    margin-left: -40px;
+    margin-top: -8px;
+    background-image: url(base/ico_bundle_ribbons_top.png) !important;
+    width: 90px;
+    height: 60px;
+  }
+  h2 {
+    margin: 55px 0px 5px 0px;
+  }
+
+}
+
+/* ----------------circle-icon ----------------*/
+
+.circle-icon {
+	//clear:both;
+  padding-left: 40px;
+  &:before {
+	margin-left: -35px;
+    margin-top: 15px;
+    background-image: url(base/ico_bundle_circles.png) !important;
+    width: 30px;
+    height: 30px;
+  }
+  h2 {
+    margin: 20px 0px 5px 0px;
+  }
+
+}
+//-------------- ICONS!!!--------------
+
+.ribbon{
+	@each $index, $icon-value in $icons{
+		&.#{$icon-value}:before{
+			background-position-y:-0px;
+			background-position-x:-75px*($index);
+		}
+	}
+	
+}
+.ribbon-top{
+	@each $index, $icon-value in $icons{
+		&.#{$icon-value}:before{
+			background-position-y:-0px;
+			background-position-x:-90px*($index);
+		}
+	}
+	
+}
+
+.circle-icon{
+	@each $index, $icon-value in $icons{
+		&.#{$icon-value}:before{
+			background-position-y:-15px;
+			background-position-x:-45px*($index)-15px;
+		}
+	}
+	
+}

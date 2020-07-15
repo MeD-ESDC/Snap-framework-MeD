@@ -1,0 +1,320 @@
+<!doctype HTML>
+
+<!-- EMPTY PAGE -->
+
+<header class="container-fluid top-banner">
+	<div class="container">
+		<div class="row">
+			<hgroup class = "col-md-12 text-center">
+				<h1>Standard Components</h1>
+				<!--<p>BANNER_TEXT</p>--> 
+				<!--<p class="instruction">BANNER_INSTRUCTIONS</p>--> 
+			</hgroup>
+		</div>
+	</div>
+</header>
+<article class="container-fluid">
+	<div class="container">
+		<h2>Using Components</h2>
+		<p>There are several different components available for formatting your content. The Snap! Framework is built on the WET template and utilizes the widgets that have been created at part of that template. To align the look and feel of courses built using the Snap! framework with those built in Adapt, we will be using a 2-column layout. Components can either be full-width or half-width of the block. Within each block the maximum number of components is limited to 2. This allows the using to focus on one block of content at a time, similar to a slide in Captivate.</p> 
+		<p class="instruction">Explore the available components for your layout ideas</p>
+	</div>
+	
+	<!-- BLOCK -->
+	<section class="container">
+		<h3>Callouts</h3>
+		<p>Use Callouts when you want to pull out or emphasis a text component. Callouts are styled differently than regular text components to draw the learner's focus to special information.</p> 
+		<!--<p class="instruction">BLOCK_INSTRUCTION_TEXT</p>-->
+		<div class="row">
+			<div class="col-md-6">
+				<div class="component">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</div>
+				<!--<p class="instruction">COMPONENT_INSTRUCTION_TEXT</p>--> 
+			</div>
+			<div class="col-md-6">
+				<div class="component callout">
+					<h4>Callouts</h4>
+					<div>
+						
+						<p>Every once in a while you need to draw attention to some extra information that does not fit into a <strong>Take Note</strong> or a <strong>Go To</strong> so you can use a <strong>Callout</strong></p>
+						<p>This <strong>Callout</strong> uses the div class="component note take-note".</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section class="container">
+		<h3>Icon Boxes</h3>
+		<p>Use Icons Boxes in conjunction with the Common Look and Feel icons. Each standard icon has an associated use and is outlined in the Style Guide section entitled Colours and Icons. Icon boxes are styled differently than regular text components to draw the learner's focus to special information.</p>
+		<p class="instruction">Learn more about the <a href="./content/module1/m1-2_en.html">Common Look and Feel (CLF) Icons</a></p>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="component icon-box">
+					<h4><i class="fas fa-key" aria-hidden="true"></i> Key Concept</h4>
+					<div>
+						<p>If the client receives any weeks of regular benefits in the initial BP, the BP cannot be extended to pay additional weeks of special benefits. In addition, the client must have received at least 1 week of that special BT in the initial BP to receive that same BT in the extended BP.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<!-- BLOCK -->
+	<section class="container">
+		<h3>Accordions</h3>
+		<p>Below is an accordion, it is used to reveal more information in less space. Accordions are used for terms or like subjects.</p>
+		<p class="instruction">Learn more about the <a href="https://wet-boew.github.io/v4.0-ci/demos/details/details-en.html" target="_blank" >Accordion Widget</a> and the <a href="https://wet-boew.github.io/v4.0-ci/docs/ref/toggle/toggle-en.html" target="_blank" >Toggle Widget</a>.</p>
+		<p class="instruction">Click the accordion boxes to open them and reveal their content.</p>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="component accordion"> 
+					<!--<h2>COMPONENT_TITLE</h2>-->
+					<details class="acc-group">
+						<summary class="wb-toggle tgl-tab" data-toggle="{'parent': '.accordion', 'group': '.acc-group'}">Click on the "+" sign to the left to open the accordion.</summary>
+						<div class="tgl-panel">
+						<p>More information is revealed here:
+						<ul>
+							<!--<li>This may vary for each individual person as every person learns at their own pace.</li>-->
+							<li>When the accordion is opened, this text is visible.</li>
+							<li>This is a list, they are common in accordions.</li>
+						</ul>
+						</p>
+						</div>
+					</details>
+					<details class="acc-group">
+						<summary class="wb-toggle tgl-tab" data-toggle="{'parent': '.accordion', 'group': '.acc-group'}">Once opened</summary>
+						<div class="tgl-panel">
+							<p>You can add images to accordions. </p>
+						</div>
+					</details>
+					<details class="acc-group">
+						<summary class="wb-toggle tgl-tab" data-toggle="{'parent': '.accordion', 'group': '.acc-group'}">Auto-collapse</summary>
+						<div class="tgl-panel">
+							<p>Accordions can be set to auto-collapse withing a group such as these 3 or to remain open like the two below.</p>
+						</div>
+					</details>
+					<!--<p class="instruction">COMPONENT_INSTRUCTION_TEXT</p>--> 
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- BLOCK -->
+	<section class="container">
+		<h3>Carousels</h3>
+		<p>Carousels are used to present graphical information. They are useful for walkthroughs or tutorials.</p>
+		<p class="instruction">Learn more about the <a href="https://wet-boew.github.io/wet-boew/demos/tabs/tabs-carousel-en.html" target="_blank" >Carousel Widget</a>.</p>
+		<!--<p class="instruction">BLOCK_INSTRUCTION_TEXT</p>-->
+		<div class="row">
+			<div class="col-md-12">
+				<div class="component wb-tabs carousel-s2">
+					
+						<ul role="tablist">
+							<li class="active"><a href="#panel1"><img src="content/medias/images/protect-environment.jpg" alt="Tab 1: ..." /></a></li>
+							<li><a href="#panel2"><img src="content/medias/images/banff.jpg" alt="Tab 2: ..." /></a></li>
+							<li><a href="#panel3"><img src="content/medias/images/investinourfuture.jpg" alt="Tab 3: ..." /></a></li>
+						</ul>
+						<div class="tabpanels">
+							<div role="tabpanel" id="panel1" class="in fade">
+								<figure> <img src="content/medias/images/protect-environment.jpg" alt="" />
+									<figcaption>
+										<p> Take Note: Renewal of the Aviation Document Booklet </p>
+									</figcaption>
+								</figure>
+							</div>
+							<div role="tabpanel" id="panel2" class="out fade">
+								<figure> <img src="content/medias/images/banff.jpg" alt="" />
+									<figcaption>
+										<p> Take Note: Grade Crossing Improvement Program (GCIP) </p>
+									</figcaption>
+								</figure>
+							</div>
+							<div role="tabpanel" id="panel3" class="out fade">
+								<figure> <img src="content/medias/images/investinourfuture.jpg" alt="" />
+									<figcaption>
+										<p> Take Note: Tanker Safety Expert Panel </p>
+									</figcaption>
+								</figure>
+							</div>
+						</div>
+					<!--<p class="instruction">COMPONENT_INSTRUCTION_TEXT</p>-->
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	
+	<!-- BLOCK -->
+	<section class="container">
+		<h3>Video</h3>
+		<p>For video, the multimedia player leverages the native HTML5 <strong>video</strong> tag. The MPEG 4 format (H264 codec) is the minimum requirement for video because it is the standard video format on many browsers. The multimedia player's timeline relies on the HTML5 progress element and uses a polyfill when the element is not supported.</p>
+		<p class="instruction">
+			Learn more about the <a href="https://wet-boew.github.io/wet-boew/demos/multimedia/multimedia-en.html" target="_blank" >Video Widget</a>
+		</p>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="component"> 
+					<!--<h2>COMPONENT_TITLE</h2>--> 
+					<!--<p>COMPONENT_CONTENT</p>-->
+					<figure class="wb-mltmd">
+						<video poster="content/medias/images/video1-en.jpg" title="Looking for a Job">
+							<source type="video/mp4" src="https://video2.servicecanada.gc.ca/video/boew-wet/te-lj-eng.mp4" />
+							<track src="#inline-captions" kind="captions" data-type="text/html" srclang="en" label="English" />
+						</video>
+						<figcaption>
+							<details id="inline-captions">
+								<summary>Looking for a Job - HTML5 Transcript/Captions</summary>
+								<p class="wet-boew-vd"><strong>(Animated pen draws a red line that leads into the text Looking for A Job)</strong></p>
+								<p class="wet-boew-vd"><strong>(Cut to a medium shot of the Host. LINE DRAWING GRAPHIC: Stick person appears and waves.)</strong></p>
+								<p><span class="wb-tmtxt" data-begin="2.50s" data-dur="3.84s">Hi, my name is Eric, and I&#39;m a Service Canada employee.</span></p>
+								... </details>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- BLOCK -->
+	<section class="container">
+		<h3>Audio</h3>
+		<p>For audio-only, the multimedia player leverages the native HTML5 <strong>audio</strong> tag.</p>
+		<p class="instruction">
+			Learn more about the <a href="https://wet-boew.github.io/wet-boew/demos/multimedia/multimedia-audio-en.html" target="_blank" >Audio Widget</a>.
+		</p>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="component"> 
+					<!--<h2>COMPONENT_TITLE</h2>--> 
+					<!--<p>COMPONENT_CONTENT</p>--> 
+					<!-- Display the audio player with control buttons. -->
+					<figure class="wb-mltmd top-margin" data-wb-mltmd="">
+						<audio title="Audio Widget">
+							<source src="https://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.mp3" type="audio/mp3"/>
+							<source src="https://www.archive.org/download/RideOfTheValkyries/ride_of_the_valkyries_2.ogg" type="audio/ogg"/>
+						</audio>
+						<figcaption>
+							<details style="background-color: white" >
+								<summary>Transcript</summary>
+								<p>Welcome to this theory course on passport photographs.</p>
+								<p>My name is Caillin. I’m an experienced Passport Service Delivery employee and will be your coach to help you as needed.</p>
+								<p>There are two lessons in this course, which will take approximately 30 minutes in total to complete.</p>
+								<p>At the end of each lesson, there will be some practice exercises. These are not scored but will give you an opportunity to check your knowledge and skills.</p>
+								<p>At the end of the course, there will be a final test. The passing score is 90%.</p>
+							</details>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<!-- BLOCK -->
+	<section class="container">
+		<h3>Next Section</h3>
+		<p>Navigate to the next section to learn more about the standard colours and icons.</p>
+		<!--<p class="instruction">BLOCK_INSTRUCTION_TEXT</p>-->
+		<div class="row">
+			<div class="col-md-12">
+				<div class="component simple-navigation">
+					<!--<h2>COMPONENT_TITLE</h2>-->
+					<nav role="change slide" class="backnext" aria-label="Main Navigation">
+						<a href="#" class="back btn btn-med">&lt; Previous</a>
+						<a href="#" class="next btn btn-med">Next &gt;</a>
+					</nav>
+					<!--<p class="instruction">COMPONENT_INSTRUCTION_TEXT</p>-->
+				</div>
+			</div>
+		</div>
+	</section>
+</article>
+
+
+
+<!--Tabbed Interface --> 
+
+<!-- 
+<section class="container-fluid">
+  <div class="container">
+	  <div class="row"> 
+		<div class="col-md-12">
+		  <h2>Tabbed Interface</h2>
+		    <hr class="hr-style">
+		
+		<p>Dynamically stacks multiple sections of content, transforming them into a tabbed interface</p>
+			
+		<a href="https://wet-boew.github.io/wet-boew/demos/tabs/tabs-en.html" target="_blank" >Link to Tabbed Interface Widget</a>	
+		
+			<div class=" top-margin wb-tabs ignore-session background">
+				<div class="tabpanels">
+					<details style="background-color: white" id="details-panel1">
+						<summary>Example 1</summary>
+							<p class="paragraph-padding">
+							It is needless, however, to prove that the Norsemen could have reached America in their ships. The voyages from Iceland to Greenland which we know they made continually for four hundred years were just as arduous as a further voyage from Greenland to the coast of Canada.
+							</p>
+					</details>
+					<details style="background-color: white" id="details-panel2">
+						<summary>Example 2</summary>
+						<p class="paragraph-padding">
+							From time immemorial the Norsemen Example 3 were among the most daring and skilful mariners ever known. They built great wooden boats with tall, sweeping bows and sterns. These ships, though open and without decks, were yet stout and seaworthy. Their remains have been found, at times lying deeply buried under the sand and preserved almost intact. One such vessel, discovered on the shore of Denmark, measured 72 feet in length. Another Viking ship, which was dug up in Norway, and which is preserved in the museum at Christiania, was 78 feet long and 17 feet wide. One of the old Norse sagas, or stories, tells how King Olaf Tryggvesson built a ship, the keel of which, as it lay on the grass, was 74 ells long; in modern measure, it would be a vessel of about 942 tons burden. Even if we make allowance for the exaggeration or ignorance of the writer of the saga, there is still a vast contrast between this vessel and the little ship Centurion in which Anson sailed round the world.
+						</p>
+					</details>
+					<details style="background-color: white" id="details-panel3">
+						<summary>Example 3</summary>
+						<p class="paragraph-padding">
+						   One of the old Norse sagas, or stories, tells how King Olaf Tryggvesson built a ship, the keel of which, as it lay on the grass, was 74 ells long; in modern measure, it would be a vessel of about 942 tons burden. Even if we make allowance for the exaggeration or ignorance of the writer of the saga, there is still a vast contrast between this vessel and the little ship Centurion in which Anson sailed round the world.
+						</p>
+					</details>
+
+				</div>
+			</div>
+		  </div>
+	  </div>
+	</div>
+</section>
+--> 
+
+<!-- Gallery 
+
+<section class="container-fluid">
+  <div class="container">
+	  <div class="row"> 
+    <div class="col-md-12">
+		<h2>Image Gallery</h2>
+			<hr class="hr-style">
+				<p>This image gallery is just an inline list of images. When you select an image you can scroll through the images, they have descriptions when you select an image. This is found in the alt text.</p> 
+				<p>In the HTML you will notice a _b.jpg nd an _s.png these are different sizes. Clicking on the thumbnail will open the larger image in a lightbox.</p>
+					<a href="https://wet-boew.github.io/v4.0-ci/demos/lightbox/lightbox-en.html" target="_blank" >Link to Image Gallery Widget</a>
+		<section class=" top-buffer wb-lbx lbx-gal top-margin">
+			
+	<ul class="list-inline">
+		<li>
+			<a href="content/medias/images/1_b.jpg" title="Image 1">
+				<img src="content/medias/images/1_s.jpg" alt="Image 1" />
+			</a>
+		</li>
+		<li>
+			<a href="content/medias/images/2_b.jpg" title="Image 2">
+				<img src="content/medias/images/2_s.jpg" alt="Image 2" aria-describedby="image2-desc" longdesc="#image2-desc" />
+			</a>
+		</li>
+		<li>
+			<a href="content/medias/images/3_b.jpg" title="Image 3">
+				<img src="content/medias/images/3_s.jpg" alt="Image 3" />
+			</a>
+		</li>
+		<li>
+			<a href="content/medias/images/4_b.jpg" title="Image 4">
+				<img src="content/medias/images/4_s.jpg" alt="Image 4" />
+			</a>
+		</li>
+	</ul>
+			
+</section>
+		  </div>
+	  </div>
+	</div>
+</section>
+--> 

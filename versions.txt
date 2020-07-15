@@ -1,0 +1,3 @@
+FWversion=1.7.1
+WETversion=4.0.26
+MeDTemplate=2.1.2
