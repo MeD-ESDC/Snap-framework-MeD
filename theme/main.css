@@ -250,7 +250,7 @@ html[lang='en'] a.csps-glossary::after {
 /* line 20, ../common/scss/base/_placeholders.scss */
 #wb-sm .sm.open li a:hover, #wb-sm .sm.open li a:focus {
   color: #000;
-  background-color: #6e6e6e;
+  background-color: #e6e6e6;
 }
 
 /* line 26, ../common/scss/base/_placeholders.scss */
@@ -261,7 +261,7 @@ html[lang='en'] a.csps-glossary::after {
 /* line 29, ../common/scss/base/_placeholders.scss */
 #wb-bar .top-menu > .row #wb-lng ul.tb-container a:hover, #wb-bar .top-menu > .row #wb-lng ul.tb-container a:focus {
   color: #222;
-  background-color: #6e6e6e;
+  background-color: #ccc;
 }
 
 /* line 35, ../common/scss/base/_placeholders.scss */
