@@ -18,8 +18,8 @@ define(['settings-core', 'labels'], function(CoreSettings, labels) {
 
 		//temporary popper
 		var params = [
-			'height=' + (screen.height - 90),	
-			'width=' + (screen.width - 15),
+			'height=' + (screen.availHeight),	
+			'width=' + (screen.availWidth),
 			'scrollbars=1',
 			'resizable=1',
 			'fullscreen=no' //,
@@ -27,7 +27,7 @@ define(['settings-core', 'labels'], function(CoreSettings, labels) {
 		].join(',');
 
 		popup = window.open(target, 'popup_window_' + CoreSettings.courseLegacyCode, params);
-		popup.moveTo(-3, 5);
+		popup.moveTo(-3, 0);
 		//window.top.resizeTo(100, 50);
 		//window.top.moveTo(9999, 9999);
 		//popup.addEventListener('beforeunload',closeCourse,false);				
