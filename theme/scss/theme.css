@@ -3268,7 +3268,7 @@ $article-color-4: #66cdd6;
 .wb-tphp {
   z-index: 9999;
   position: relative;
-  top-padding: 50px;
+  padding-top: 50px;
 }
 
 .wb-slc {

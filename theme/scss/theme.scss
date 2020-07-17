@@ -85,7 +85,7 @@ $wb-sm-height:40px;
 .wb-tphp {
     z-index: 9999;
     position: relative;
-    top-padding: 50px;
+    padding-top: 50px;
 }
 
 .wb-slc {
@@ -136,9 +136,9 @@ $navbar-height:85px;
 }
 
 // (hidden in this template)
-#wb-info {
-    //display:none !important;
-}
+// #wb-info {
+//     //display:none !important;
+// }
 
 // -----------------------------------------------------------
 // 					WET Template styles
