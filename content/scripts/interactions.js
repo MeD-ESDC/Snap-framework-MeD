@@ -57,24 +57,18 @@ define([
 		
 		//-----------------------------------------------------------------------------------------------------
 		//    MeD Questionnaire forms - version 2.0
-		//    Author: Vincent Timbro @MeD
+		//    Author: Various @ MeD
 		//-----------------------------------------------------------------------------------------------------
 		if ($(".med-questionnaire").length !== 0) {
+			
+			//For each med-questionnaire on a page
 			$(".med-questionnaire").each(function () {
 				
-				//retry - 2 attempts
-				var the_questionnaire = $(this);
-				var retryattempts = 0;
-				if(the_questionnaire.hasClass("retry2"))
-				{
-					retryattempts = 2;
-				}				
-				
-				var submit_button = the_questionnaire.find("button");
+				var the_questionnaire = $(this);	
+				var submit_button = the_questionnaire.find(".btn-med");
 				var dropdowns = the_questionnaire.find("select");
 				var inputs = the_questionnaire.find("input");
 				var result = "unknown";
-				var multi_question = the_questionnaire.find(".question");
 				var onewaschecked = false;
 				
 				resetAssociationFeedback(the_questionnaire);
@@ -84,75 +78,31 @@ define([
 					
 					resetAssociationFeedback(the_questionnaire);
 					result = "unknown";
-					
-					// For multi questions questionnaire ------------------------------------------------
-					if (multi_question.length !== 0) {
-						multi_question.each(function (index) {
-							inputs = multi_question.eq(index).find("input");
-							onewaschecked = false;
-							
-							// for Multiple Choice questions ----------------------------------------------
-							inputs.each(function (j) {
-								//check if any answer was submitted
-								if (inputs.eq(j).is(":checked")) {
-									onewaschecked = true;
-									result = adjustresult(inputs.eq(j), true, result, retryattempts);
-								}
-								{
-									result = adjustresult(inputs.eq(index), false, result, retryattempts);
-								}
-							});
-							
-							//no answer submitted
-							if (onewaschecked === false && inputs.length > 0) {
-								result = "unanswered";
-							}
-							// ----------------------------------------------------------------------------
-							
-							// for Dropdown questions -----------------------------------------------------
-							dropdowns = multi_question.eq(index).find("select");
-							dropdowns.each(function () {
-								result = adjustresult($(this).find(":selected"), true, result, retryattempts);
-							});
-							// ----------------------------------------------------------------------------
-						});
+					onewaschecked = false;
 						
-					// For one question  questionnaire -----------------------------------------------------
-					} else {
-						onewaschecked = false;
-						
-						// for Multiple Choice questions ---------------------------------------------------
-						inputs.each(function (index) {
-							//check if any answer was submitted
-							if (inputs.eq(index).is(":checked")) {
-								onewaschecked = true;
-								result = adjustresult(inputs.eq(index), true, result, retryattempts);
-							}
-							else
-							{
-								result = adjustresult(inputs.eq(index), false, result, retryattempts);
-							}
-						});
-
-						//no answer submitted
-						if (onewaschecked === false && inputs.length > 0) {
-							result = "unanswered";
+					// for Multiple Choice questions ---------------------------------------------------
+					inputs.each(function (index) {
+						//check if any answer was submitted
+						if (inputs.eq(index).is(":checked")) {
+							onewaschecked = true;
+							result = adjustresult(inputs.eq(index).val(), true, result);
 						}
-						// --------------------------------------------------------------------------------
-							
-						// for Dropdown questions ---------------------------------------------------------
-						dropdowns.each(function () {
-							result = adjustresult($(this).find(":selected"), true, result, retryattempts);
-						});
-						// --------------------------------------------------------------------------------
-					}
+						else
+						{
+							result = adjustresult(inputs.eq(index).val(), false, result);
+						}
+					});
 
-					// Update attempt no -------------------------------------------------------------------
-					if(result === "attempt1" || result === "attempt2")
-					{
-						if(retryattempts === 2){retryattempts = 1;}
-						else if(retryattempts === 1){retryattempts = 0;}
+					//no answer submitted
+					if (onewaschecked === false && inputs.length > 0) {
+						result = "unanswered";
 					}
+								
+					// for Dropdown questions ---------------------------------------------------------
+					dropdowns.each(function () {
+						result = adjustresult($(this).find(":selected").val(), true, result);
+					});
+					// --------------------------------------------------------------------------------
 					
 					displayAssocFeedback(the_questionnaire, result); // display appropriate feedback
 				});
@@ -161,94 +111,45 @@ define([
 
 		//-----------------------------------------------------------------------------------------------------
 		//    Function: Answer check w/ multiple attempts 
-		//    Author: Vincent Timbro @MeD
+		//    Author: Various @ MeD
 		//-----------------------------------------------------------------------------------------------------
-		function adjustresult(obj, checked, currentresult, numretry) {
-			if (currentresult === "unanswered") {
-				return "unanswered";
-			} else if (currentresult === "incorrect" || currentresult === "attempt1" || currentresult === "attempt2") 
-			{
-				if (obj.val() === undefined || obj.val() === "unanswered") 
-				{
-					return "unanswered";
-				} 
-				else if(numretry === 2)
-				{
-					return "attempt1";
-				} else if(numretry === 1)
-				{
-					return "attempt2";
-				} 
-				else 
-				{
-					return "incorrect";	
-				}
-					
-			} 
-			else if (currentresult === "correct" || currentresult === "unknown") 
-			{
-				if (obj.val() === undefined || obj.val() === "unanswered" || obj.val() === "unknown") 
-				{
-					return "unanswered";
-				}
+		function adjustresult(value, selected, currentresult) {
 				
-				else if (obj.val() !== "correct")
-				{
-					if(checked)
-					{
-						if(numretry === 2)
-						{
-							return "attempt1";
-						} 
-						else if(numretry === 1)
-						{
-							return "attempt2";
-						}
-						else 
-						{
-							return "incorrect";	
-						}
+			// Previous result indicated that the question was unanswered - this means the question has a portion with radio buttons or checkboxes and none of them were selected.
+			
+			var returnresult = "null"
+			
+			switch (currentresult){
+					
+				case "unanswered":
+					returnresult = "unanswered"; break;
+				case "incorrect":
+					returnresult = "incorrect"; break;
+				case "correct":
+				case "unknown":
+					
+					if (value === undefined || value === "unanswered" || value === "unknown"){
+						returnresult = "unanswered";
 					}
-					else
-					{
-						return "correct";
+					else if(value === "correct"){
+						(selected) ? returnresult = "correct" : returnresult = "incorrect";
 					}
-				} 
-				else if(obj.val() === "correct")
-				{
-					if(checked)
-					{
-						return "correct";
+					else if (value !== "correct"){
+						(selected) ? returnresult = "incorrect" : returnresult = "correct";
 					}
-					else
-					{
-						if(numretry === 2)
-						{
-							return "attempt1";
-						} 
-						else if(numretry === 1)
-						{
-							return "attempt2";
-						}
-						else 
-						{
-							return "incorrect";	
-						}
-					}
-						
-				}
+					break;
+					
+				default:
+					console.log("something went wrong");
+					console.log("Value of current was: " + value + ", result was: " + currentresult + ", return result was " + returnresult);
 			}
-			//Error log in console
-			else
-			{
-				console.log("something went wrong");
-				console.log("Value of current was: " + obj.val() + ", result was: " + currentresult + ",num retries was: " + numretry);
-			}
+			
+			return returnresult;
 		}
 		
 		//-----------------------------------------------------------------------------------------------------
 		//    Function: Reset both feedback to invisible
-		//    Author: Vincent Timbro @MeD
+		//    Author: Various @MeD
 		//-----------------------------------------------------------------------------------------------------
 		function resetAssociationFeedback(obj) {
 			obj.find(".feedback").addClass("wb-inv");
@@ -257,20 +158,11 @@ define([
 
 		//-----------------------------------------------------------------------------------------------------
 		//    Function: Display appropriate feedback
-		//    Author: Vincent Timbro @MeD
+		//    Author: Various @MeD
 		//-----------------------------------------------------------------------------------------------------
 
 		function displayAssocFeedback(exercise, feedvalue) {
 			exercise.find(".feedback." + feedvalue).removeClass("wb-inv");
-			$(document).trigger( "open.wb-lbx", [
-				[
-					{
-						src: "#centred-popup1",
-						type: "inline"
-					}
-				],
-				true
-			]);
 		}
 			
 		//-----------------------------------------------------------------------------------------------------
