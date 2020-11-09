@@ -56,7 +56,7 @@ define(['settings-core', 'labels'], function(CoreSettings, labels) {
 	function closeCourse(){
 		if(popup && !popup.window.amINavigating){			
 			saveScormValues();			
-			//popup.close();
+			popup.close();
 			//window.top.close();
 		}		
 		
@@ -82,7 +82,7 @@ define(['settings-core', 'labels'], function(CoreSettings, labels) {
 	}
 	function closeLauncher(e){
 		if(popup){
-			//popup.close();
+			popup.close();
 			//window.top.close();
 		}
 	}
