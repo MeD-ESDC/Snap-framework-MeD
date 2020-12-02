@@ -3567,7 +3567,7 @@ $article-color-4: #66cdd6;
 /* line 184, scss/theme.scss */
 body {
   font-family: "Open Sans", Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   background-color: white;
   line-height: 140%;
   -webkit-font-smoothing: antialiased;
