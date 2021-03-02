@@ -1,6 +1,6 @@
 ## Welcome to MeD's Snap Framework!
 
-### Fun stuff
+### To fill:
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
