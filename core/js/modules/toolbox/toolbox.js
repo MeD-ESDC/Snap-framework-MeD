@@ -35,7 +35,7 @@ define([
 			$("section.lng-ofr").after("<ul id='mb-tb' class='list-unstyled open tb-container' role='menu' aria-hidden='true'></ul>");
 			$("#mb-tb").append($("ul.tb-container").html());
 			$("#mb-tb").hide();
-			this.$toolboxLink.append("<span class='wb-inv'>"+labels.nav.toolboxInstr+"</span>")
+			// this.$toolboxLink.append("<span class='wb-inv'>"+labels.nav.toolboxInstr+"</span>")
 			this.menuAddCustom();
 			this.initializeItems();
 
@@ -49,7 +49,7 @@ define([
 				notList+=((CoreSettings.showFavorites)?"":":not('.favorites')");
 				notList+=((CoreSettings.showGlossary)?"":":not('.glossary')");
 				notList+=((CoreSettings.showResources)?"":":not('.resources')");
-			var kids = this.$toolboxLink.next("ul").children("li").children("a"+notList).parent();
+			var kids = this.$toolboxLink.parent().find("ul").children("li").children("a"+notList).parent();
 			var mbKids = this.$toolboxLinkMobile.closest('section').next("ul#mb-tb").children("li").children("a"+notList).parent();; // fix mobile toolbox problem sc
 			for (var i = 0; i < kids.length; i++) {
 				this.items[i] = new ToolItem({
@@ -102,6 +102,7 @@ define([
 			var tabKey = 9;
 			var upKey = 38;
 			var downKey = 40;
+			var enterKey = 13;
 
 			if (container.is(":visible") && !this.$toolboxLink.is(":focus")) {
 				if (e.which === tabKey) {
@@ -126,10 +127,11 @@ define([
 				this.current = 0;
 				this.setFocus();
 			}
+
 		},
 
 		onToolboxClick: function(e) {
-			var container = this.$toolboxLink.next("ul");
+			var container = this.$toolboxLink.parent().find("ul");
 			if (!container.is(e.target) // if the target of the click isn't the container...
 				&& container.has(e.target).length === 0 // ... nor a descendant of the container
 				&& this.isOpen != false // ... and the toolbox is open
@@ -146,7 +148,7 @@ define([
 		menuClose: function() {
 			this.isOpen = false;
 			$("#mb-tb").slideToggle();
-			this.$toolboxLink.next("ul").slideToggle();
+			this.$toolboxLink.attr("aria-expanded",this.isOpen).parent().find("ul").slideToggle();
 		},
 		menuAddCustom: function() {
 			var pageName,itemFilename,itemTitle, lang,aCustomItem,itemClass,
@@ -242,9 +244,12 @@ define([
 if (flagLbx){initWbAdd(".wb-lbx", $("#wb-lng"));}
 		},
 		menuDisplay: function() {
-			this.$toolboxLink.next("ul").slideToggle();
+			this.$toolboxLink.attr("aria-expanded",!this.isOpen).parent().find("ul").slideToggle();
 			$("#mb-tb").slideToggle();
 			this.isOpen = true;
+			this.items[0].$el.find('a').focus();
+			// this.current = 0;
+			// this.setFocus();
 		},
 		menuToggle: function() {
 			if (this.isOpen) {

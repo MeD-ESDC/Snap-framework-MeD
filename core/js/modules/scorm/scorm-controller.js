@@ -16,18 +16,14 @@ define([
 			this.setListeners();
 
 			this.status = this.getStatus();
-			this.api=CoreSettings.api;
-
-			if (this.status !== "online") {
+			if (this.status != "online") {
 				if (CoreSettings.debugMode) {
 					$("#wb-sttl").children("a").append("<div id='status'>- " + labels.err.offline + "</div>");
 				}
 			} else {
 				//check if initialized already
-				
-				if (!this.api.LMSIsInitialized()) {
-					this.api.doLMSInitialize();
-					CoreSettings.scormversion=(CoreSettings.connectionMode==="scorm")?this.api.getAPIHandle().scormVersion:null;
+				if (!window.opener.LMSIsInitialized()) {
+					window.opener.doLMSInitialize();
 				} else {
 					//alredy initialized
 				}
@@ -41,48 +37,48 @@ define([
 			$(this).on("ScormController:resetScorm", this.resetScorm);
 		},
 		getLessonStatus: function() {
-			if (this.getStatus() === "online") {
-				return this.api.doLMSGetValue(CONSTANTS.CMI.CORE.LESSON_STATUS);
+			if (this.getStatus() == "online") {
+				return window.opener.doLMSGetValue(CONSTANTS.CMI.CORE.LESSON_STATUS);
 			} else {
 				this.checkStatusChange();
 				return "";
 			}
 		},
 		getBookmark: function() {
-			if (this.getStatus() === "online") {
-				return this.api.doLMSGetValue(CONSTANTS.CMI.CORE.LESSON_LOCATION);
+			if (this.getStatus() == "online") {
+				return window.opener.doLMSGetValue(CONSTANTS.CMI.CORE.LESSON_LOCATION);
 			} else {
 				this.checkStatusChange();
 				return "";
 			}
 		},
 		getSuspendData: function() {
-			if (this.getStatus() === "online") {
-				return this.api.doLMSGetValue(CONSTANTS.CMI.SUSPEND_DATA);
+			if (this.getStatus() == "online") {
+				return window.opener.doLMSGetValue(CONSTANTS.CMI.SUSPEND_DATA);
 			} else {
 				this.checkStatusChange();
 				return "";
 			}
 		},
 		saveBookmark: function() {
-			if (this.getStatus() === "online") {
-				this.api.doLMSSetValue(CONSTANTS.CMI.CORE.LESSON_LOCATION, masterStructure.currentSub.sPosition);
+			if (this.getStatus() == "online") {
+				window.opener.doLMSSetValue(CONSTANTS.CMI.CORE.LESSON_LOCATION, masterStructure.currentSub.sPosition);
 			} else {
 				this.checkStatusChange();
 				return "";
 			}
 		},
 		saveSuspendData: function(data) {
-			if (this.getStatus() === "online") {
-				this.api.doLMSSetValue(CONSTANTS.CMI.SUSPEND_DATA, data);
+			if (this.getStatus() == "online") {
+				window.opener.doLMSSetValue(CONSTANTS.CMI.SUSPEND_DATA, data);
 			} else {
 				this.checkStatusChange();
 				return "";
 			}
 		},
 		saveCommentsData: function(data) {
-			if (this.getStatus() === "online") {
-				this.api.doLMSSetValue(CONSTANTS.CMI.COMMENTS, data);
+			if (this.getStatus() == "online") {
+				window.opener.doLMSSetValue(CONSTANTS.CMI.COMMENTS, data);
 			} else {
 				this.checkStatusChange();
 				return "";
@@ -92,33 +88,28 @@ define([
 
 		/*CSPS-TD-AJOUT G313*/
 		saveScoreData: function(data) {
-			if (this.getStatus() === "online") {
-				this.api.doLMSSetValue(CONSTANTS.CMI.CORE.SCORE_MIN, 0);
-				this.api.doLMSSetValue(CONSTANTS.CMI.CORE.SCORE_MAX, 100);
-				this.api.doLMSSetValue(CONSTANTS.CMI.CORE.SCORE_RAW, data);
-				this.api.doLMSCommit();
+			if (this.getStatus() == "online") {
+				window.opener.doLMSSetValue(CONSTANTS.CMI.CORE.SCORE_MIN, 0);
+				window.opener.doLMSSetValue(CONSTANTS.CMI.CORE.SCORE_MAX, 100);
+				window.opener.doLMSSetValue(CONSTANTS.CMI.CORE.SCORE_RAW, data);
+				window.opener.doLMSCommit();
 			} else {
 				this.checkStatusChange();
 				return "";
 			}
 		},
-		isOnline: function() {
+		/*END CSPS-TD-AJOUT G313*/
 
-			if(CoreSettings.isPopped === true){
-				if(window.opener.getAPIHandle() !== null){
-					this.api=window.opener;
-					return true;
-				}
-			}else{
-				if(getAPIHandle() !== null){
-					this.api=window;
-					return true;
-				}
-			}
+
+		isPopped: function() {
+			return (window.opener && window.opener.open && !window.opener.closed) ? true : false;
+		},
+		isOnline: function() {
+			return window.opener.getAPIHandle() != null;
 		},
 
 		getStatus: function() {
-			if (CoreSettings.connectionMode === "scorm" ) { //if this window has access to poppup
+			if (CoreSettings.connectionMode === "scorm" && this.isPopped()) { //if this window has access to poppup
 				//check for ILMS
 				if (this.isOnline()) {
 					return "online";//labels.err.online.toLowerCase();
@@ -133,14 +124,13 @@ define([
 
 		checkStatusChange: function() {
 			//do SOMETHING if previous status hasn't been updated
-			if (this.status !== this.getStatus()) {
+			if (this.status != this.getStatus()) {
 				//SOMETHING CHANGED
 				//manage error
 				alert(labels.err.statusChange);
 			}
 		},
 		initScormDefaults: function(resetVars) {
-			resetVars=(typeof resetVars !=="undefined")?resetVars:null;
 			this.aScorm = [
 				[CONSTANTS.CMI.CORE.STUDENT_ID, ""],
 				[CONSTANTS.CMI.CORE.STUDENT_NAME, ""],
@@ -170,7 +160,7 @@ define([
 			var scormName;
 			for (var sLoop = 0; sLoop < this.aScorm.length; sLoop++) {
 				scormName = this.aScorm[sLoop][0];
-				this.aScorm[sLoop][1] = this.api.doLMSGetValue(scormName);
+				this.aScorm[sLoop][1] = window.opener.doLMSGetValue(scormName);
 			}
 			return "done";
 		},
@@ -180,25 +170,25 @@ define([
 			for (var sLoop = 2; sLoop < this.aScorm.length; sLoop++) {
 				scormName = this.aScorm[sLoop][0];
 				scormValue = this.aScorm[sLoop][1];
-				this.aScorm[sLoop][1] = this.api.doLMSSetValue(scormName, scormValue);
+				this.aScorm[sLoop][1] = window.opener.doLMSSetValue(scormName, scormValue);
 			}
-			this.api.doLMSCommit();
+			window.opener.doLMSCommit();
 			return "done";
 		},
 		incomplete: function() {
-			if (this.getStatus() === "online") {
-				this.api.doLMSSetValue(CONSTANTS.CMI.CORE.LESSON_STATUS, "incomplete");
-				this.api.doLMSCommit();
+			if (this.getStatus() == "online") {
+				window.opener.doLMSSetValue(CONSTANTS.CMI.CORE.LESSON_STATUS, "incomplete");
+				window.opener.doLMSCommit();
 				return "done";
 			} else {
 				this.checkStatusChange();
 			}
 		},
 		complete: function() {
-			if (this.getStatus() === "online") {
-				if (this.getLessonStatus() !== 'completed') {
-					this.api.doLMSSetValue(CONSTANTS.CMI.CORE.LESSON_STATUS, "completed");
-					this.api.doLMSCommit();
+			if (this.getStatus() == "online") {
+				if (this.getLessonStatus() != 'completed') {
+					window.opener.doLMSSetValue(CONSTANTS.CMI.CORE.LESSON_STATUS, "completed");
+					window.opener.doLMSCommit();
 				}
 				return "done";
 			} else {
@@ -207,8 +197,6 @@ define([
 		},
 
 		updateScorm: function() {
-			var scormName;
-			var scormValue;
 			$("#scorm-tracker").children("dl").html("");
 			var scormList = $("#scorm-tracker").children();
 			this.pullScormVars();
@@ -221,13 +209,13 @@ define([
 		},
 		activateScorm: function() {
 			var btn = $(".scorm-btn");
-			if (this.status === "online") {
+			if (this.status == "online") {
 				if (btn.hasClass("disabled")) {
 					btn.html("Disable Scorm Tracking");
 					$("html").addClass("debug");
-					this.updateScorm();
+					updateScorm();
 					this.refreshScorm = window.setInterval(function() {
-						this.updateScorm();
+						updateScorm();
 					}, 4000);
 				} else {
 					$("#scorm-tracker").children("dl").html("");
@@ -241,11 +229,11 @@ define([
 			}
 		},
 		resetScorm: function() {
-			this.api.doLMSSetValue(CONSTANTS.CMI.SUSPEND_DATA, "");
-			this.api.doLMSSetValue(CONSTANTS.CMI.CORE.LESSON_LOCATION, "");
-			this.api.doLMSSetValue(CONSTANTS.CMI.CORE.LESSON_STATUS, "incomplete");
-			this.api.doLMSSetValue(CONSTANTS.CMI.CORE.SCORE.RAW, 0);
-			this.api.doLMSCommit();
+			window.opener.doLMSSetValue(CONSTANTS.CMI.SUSPEND_DATA, "");
+			window.opener.doLMSSetValue(CONSTANTS.CMI.CORE.LESSON_LOCATION, "");
+			window.opener.doLMSSetValue(CONSTANTS.CMI.CORE.LESSON_STATUS, "incomplete");
+			window.opener.doLMSSetValue(CONSTANTS.CMI.CORE.SCORE.RAW, 0);
+			window.opener.doLMSCommit();
 		}
 	});
 });

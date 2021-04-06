@@ -6,823 +6,738 @@
 @import "./_template/_objects";
 @import "./_template/_animate";
 
-// -----------------------------------------------------------
-// 					Paddings and Margins
-// -----------------------------------------------------------
 
-// --------------- 	Variables 	-------------------------- 
-$testpadding:80px;
-$testpadding2:60px;
+//New css to sort//
+
+$testpadding:80px; 
+$testpadding2:60px; 
 $buttonheight:45px;
 $block-margins:80px;
 $block-padding:30px;
 $top-banner-margins:50px;
 $space-after-paragraphs:20px;
 
-// --------------- 	Classes 	-------------------------- 
-.top-margin {
-    margin-top: $block-padding;
-}
+	
+	.top-margin
+	{
+		margin-top:$block-padding;
+	}
+	.bottom-margin
+	{
+		margin-top:$block-padding;
+	}
+
+// TEMPLATE
+
+
+// -----------------------------------------------------------------------------------------------------
+//
+//	  Responsiveness options
+//
+// -----------------------------------------------------------------------------------------------------
 
-.bottom-margin {
-    margin-top: $block-padding;
-}
-
-// -----------------------------------------------------------
-// 					SNAP! Components
-// -----------------------------------------------------------
-
-// ------ Fixed Static height for top bars ---------------
-$wb-bar-height:64px;
-$wb-sm-height:40px;
-
-// --------------- 	Top nav bar --------------------------
-
-#wb-bar {
-    z-index: 101;
-    height: $wb-bar-height;
-    position: fixed;
-    width: 100%;
-    color: black;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.26);
-    padding-top:calc((#{$wb-bar-height} - 45px)/2);
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        padding: 0px;
-        margin: 0px;
-        font-weight: normal !important;
-    }
-
-    .series-title {
-        vertical-align: middle;
-    }
-
-    .series-title .home {
-        display: inline-block;
-        margin-right: 30px;
-        vertical-align: middle;
-        padding-top: 10px;
-    }
-
-    .top-menu {
-        width: 100%;
-        padding: 0px;
-        padding-left: 25px;
-        padding-right: 40px;
-
-        h2.series-title,
-        h2.series-title a {
-            color: $instructions-text-color !important;
-        }
-    }
-}
-
-.wb-tphp {
-    z-index: 9999;
-    position: relative;
-    padding-top: 50px;
-}
-
-.wb-slc {
-    z-index: 9999;
-    position: absolute;
-}
-
-// --------------- 	Title bar ----------------------------
-//Shows course title and sub title on every page (hidden in this template)
-#wb-sttl {
-    display: none !important;
-}
-
-// ----------- 	Breadcrumbs/Supermenu rows ---------------
-// (hidden in this template)
-#wb-sm {
-    display: none !important;
-    //position:fixed;
-    //top:$wb-bar-height;
-}
-
-// ------- 	Static height of bottom nav bar ---------------
-$navbar-height:85px;
-
-// ----------- 	Bottom Control bar ------------------------
-
-.backnext {
-    text-align: center;
-}
-
-.backnext .back,
-.backnext .next {
-    display: inline;
-    text-decoration: none;
-
-    a {
-        color: $interactive-text-color !important;
-    }
-
-    &:hover {
-        text-decoration: none;
-        background-color: $interactive-hover-color;
-    }
-
-    &.disabled {
-        background-color: $interactive-disabled-color;
-    }
-}
-
-// (hidden in this template)
-// #wb-info {
-//     //display:none !important;
-// }
-
-// -----------------------------------------------------------
-// 					WET Template styles
-// -----------------------------------------------------------
-
-.wb-mm-ctrls {
-    background: $banner-color;
-    color: #fff;
-    display: table;
-    padding-top: 2em;
-    position: relative;
-    width: 100%;
-
-
-}
-
-.wb-mm-ctrls progress {
-    -webkit-appearance: none;
-    background: #fff;
-    border: 7px solid $banner-color;
-    border-radius: 14px;
-    color: #176ca7;
-    display: block;
-    height: 30px;
-    left: 0px;
-    padding: 2px;
-    position: absolute;
-    top: 0px;
-    width: 100%;
-
-}
-
-.wb-mm-ctrls {
-    button {
-        background-color: $banner-color !important;
-        padding: 6px 12px;
-        font-size: 16px;
-    }
-}
-
-// -----------------------------------------------------------
-// 					Content styles
-// -----------------------------------------------------------
-
-// ---------------------  Body  --------------------------
-body {
-    font-family: $fontFamily;
-    font-size: 16px;
-    background-color: $body-background-color;
-    line-height: 140%;
-    -webkit-font-smoothing: antialiased;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-// -------------- Main content box -----------------------
-body main.loaded {
-    background-color: $body-background-color;
-    z-index: 0;
-    padding-top: $wb-bar-height; //calc(#{$wb-bar-height} + #{$wb-sm-height});
-    //margin-bottom:$navbar-height;
-
-    .spinner {
-        background-color: $body-background-color;
-    }
-}
-
-// -----------------------------------------------------------
-// 					Dynamic content
-// -----------------------------------------------------------
-
-html body #dynamic_content {
-
-    // -------------- Header styles  -------------------------
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        padding: 0px;
-        margin: 0px;
-        margin-bottom: 8px;
-
-        font-size: 36px;
-        font-weight: 300;
-
-        color: $header-text-color;
-    }
-
-    .modal-title {
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            color: white;
-
-        }
-    }
-
-    // -------------- Paragraph styles -----------------------
-    p {
-        font-weight: 100;
-        padding: 0px;
-        margin-bottom: 15px;
-
-        &:last-of-type {
-            margin-bottom: 0px;
-        }
-    }
-
-    .instruction {
-        font-weight: 700;
-        color: $instructions-text-color;
-    }
-
-    // -------------- Lists and Defaults -----------------------
-
-    font-weight:400;
-
-    legend {
-        font-size: 14px;
-    }
-
-    label {
-        font-weight: normal;
-    }
-
-    // ----------------- Form elements -------------------------
-
-    button,
-    input[type="radio"] {
-        cursor: pointer;
-    }
-
-    input:checked {
-        color: $interactive-color;
-    }
-
-    .btn.btn-med {
-        font-size: 18px;
-        background-color: $interactive-color;
-        border: none;
-        border-radius: 0px;
-        color: $interactive-text-color;
-        padding: 14px 28px 14px 28px;
-        cursor: pointer;
-        text-align: center;
-
-        &:hover {
-            background-color: $interactive-hover-color;
-        }
-    }
-
-    details {
-        text-decoration: none;
-        border-radius: 0px;
-        border: none;
-
-        &:last-of-type {
-            margin-bottom: 0px;
-        }
-
-        p:nth-child(2),
-        ul:nth-child(2),
-        ol:nth-child(2) {
-            margin-top: 15px;
-        }
-
-        p:last-child,
-        ul:last-child,
-        ol:last-child {
-            margin-bottom: 0px;
-        }
-
-        summary {
-
-            text-decoration: none;
-
-            border-radius: 0px;
-            border: none;
-
-            &:hover,
-            &:active {
-                text-decoration: none;
-            }
-
-            &:before {
-                font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", "monospace";
-                float: left;
-                position: relative;
-                content: "+";
-                font-size: 20px;
-                font-weight: bold;
-                margin-right: 20px;
-            }
-
-        }
-
-        &.open {
-            summary {
-                &:before {
-                    font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", "monospace";
-                    float: left;
-                    position: relative;
-                    content: "-";
-                    font-size: 20px;
-                    font-weight: bold;
-                    margin-right: 20px;
-                }
-
-            }
-        }
-    }
-
-    // --------------------- Top Banner -------------------------
-    .top-banner {
-        background-color: $banner-color;
-
-        h1 {
-            color: $banner-text-color;
-            font-size: 48px;
-        }
-
-        color:$banner-text-color;
-        //background:url("../content/medias/images/bgtest_1.png");
-        background-size:cover;
-        background-position:top;
-        padding-top:$testpadding;
-        padding-bottom:$testpadding;
-
-        .container {
-            padding: 0px;
-            padding-left: $testpadding2;
-            padding-right: $testpadding2;
-        }
-
-        .instruction {
-            color: $banner-text-color;
-        }
-    }
-
-    // --------------------- Articles ---------------------------
-    article {
-        padding-top: $testpadding;
-        padding-bottom: $testpadding;
-        background-color: $main-background-color;
-
-        //first container
-        div.container {
-            background-color: transparent;
-            padding: 0px;
-            padding-left: $testpadding2;
-            padding-right: $testpadding2;
-
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6 {
-                font-size: 36px;
-            }
-        }
-
-        // --------------------- Blocks -------------------------
-
-        //block container
-        section.container {
-            background-color: $alternate-background-color;
-            margin-top: 100px;
-            padding: $testpadding2;
-
-            .row {
-                margin-top: 30px;
-            }
-
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6 {
-                font-size: 36px;
-            }
-
-            &.menupage {
-                background-color: transparent;
-                margin-top: -190px;
-            }
-
-            // --------------- Components -----------------------
-
-            .component {
-                background-color: $main-background-color;
-                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.26);
-                padding: 30px;
-                height: 100%;
-
-                h1,
-                h2,
-                h3,
-                h4,
-                h5,
-                h6 {
-                    font-size: 24px;
-                }
-
-                &.nobg //no background - used to alternate components
-
-                    {
-                    background-color: transparent;
-                    box-shadow: none;
-                }
-
-                // ---------- Menu item component ---------------
-                &.menu-item-inner {
-                    background-color: $alternate-background-color;
-                    color: $alternate-text-color;
-                    //box-shadow:none !important;
-                    padding: 30px;
-
-                    button {
-                        margin-top: 30px;
-                    }
-
-                    h1,
-                    h2,
-                    h3,
-                    h4,
-                    h5,
-                    h6 {
-                        color: $header-text-color;
-                    }
-                }
-
-                // ----------  Icon box component ---------------				
-                &.icon-box {
-                    $icon-box-padding: 15px;
-                    padding: 0px;
-                    background-color: $callout-color;
-
-                    h1,
-                    h2,
-                    h3,
-                    h4,
-                    h5,
-                    h6 {
-                        svg {
-                            margin-right: $icon-box-padding;
-                        }
-
-                        vertical-align: middle;
-                        color:$callout-text-color;
-                        margin:0px;
-                        padding:$icon-box-padding
-                    }
-
-                    div {
-                        border: 3px solid $callout-color;
-                        background-color: $main-background-color;
-                        color: $main-text-color;
-                        padding: $icon-box-padding;
-                    }
-                }
-
-                // ------------ Callout component ---------------
-                &.callout {
-                    background-color: $callout-color;
-                    color: $callout-text-color;
-
-                    h1,
-                    h2,
-                    h3,
-                    h4,
-                    h5,
-                    h6 {
-                        color: $callout-text-color;
-                    }
-
-                    p:last-of-type {
-                        margin-bottom: 0px;
-                    }
-                }
-
-                // ---------- Accordion component ---------------
-                &.accordion {
-                    $accordion-padding: 20px;
-
-                    details summary {
-                        font-size: 24px;
-                        font-weight: 300;
-                        background-color: $interactive-color;
-                        color: $interactive-text-color;
-                        text-decoration: none;
-                        border-radius: 0px;
-                        border: none;
-                        padding-top: $accordion-padding;
-                        padding-bottom: $accordion-padding;
-                        border: 1px solid $interactive-color;
-                        outline: 3px solid $interactive-color;
-                        margin-left: -15.4px;
-                        margin-right: -15.4px;
-
-                        &:hover {
-                            background-color: $interactive-hover-color;
-                            border: 1px solid $interactive-hover-color;
-                            outline: 3px solid $interactive-hover-color;
-                        }
-                    }
-
-                    details summary:marker {
-                        display: none;
-                        content: "+";
-                    }
-
-                    details[open] summary:marker {
-                        display: none;
-                        content: "-";
-                    }
-
-
-                    details {
-                        background-color: $main-background-color;
-                        color: $main-text-color;
-                        text-decoration: none;
-                        border-radius: 0px;
-                        border: 3px solid $interactive-color;
-
-                        p:first-of-type {
-                            margin-top: 15px;
-                        }
-                    }
-                }
-
-                // ---------------- carousel component -------------------
-                &.carousel-s2 {
-                    figcaption {
-                        background-color: white;
-                        color: #000;
-                    }
-
-                    ul {
-                        margin-top: 30px;
-                    }
-
-                    li.prv,
-                    li.nxt,
-                    li.plypause {
-                        color: white;
-                        background-color: $interactive-color;
-                        border: none;
-                        box-shadow: none;
-                        border-radius: 0px;
-                        height: 62.93px;
-
-                        a,
-                        span {
-                            background-color: transparent;
-                            border: none;
-                            box-shadow: none;
-                            color: white;
-                        }
-
-                        &:hover {
-                            background-color: $interactive-hover-color;
-                            border: none;
-                            box-shadow: none;
-                            border-radius: 0px;
-                        }
-                    }
-
-
-                    li.plypause {
-                        padding-left: 20px;
-                        float: right;
-                    }
-                }
-
-                .wb-tabs.carousel-s2 [role="tablist"] {
-                    bottom: 4em !important;
-                    width: 93.5% !important;
-                    z-index: 2 !important;
-                    background-color: $interactive-color;
-                }
-
-                // ----------- MeD Questionnaire Form -----------
-                $questionnaire-feed-text-border:rgba(255, 255, 255, 0.3);
-                $questionnaire-feed-text-border-size:rgba(255, 255, 255, 0.3);
-
-                &.med-questionnaire {
-                    fieldset {
-                        padding: 0px;
-                    }
-
-                    legend {
-                        font-size: 16px;
-                    }
-
-                    select {
-                        display: block;
-                        width: 100%;
-                        padding: 20px;
-                        margin-bottom: 20px;
-                        background-color: $interactive-color;
-                        color: $interactive-text-color;
-                        border: none;
-
-                        &:after {
-                            display: none;
-                        }
-
-                        &:last-of-type {
-                            margin-bottom: 0px;
-                        }
-
-                        &:hover {
-                            background-color: $interactive-hover-color;
-                        }
-
-                    }
-
-                    .question-buttons {
-                        margin-top: 20px;
-
-                        a {
-                            width: 49%;
-                            text-decoration: none;
-
-                            &:last-of-type {
-                                float: right;
-                            }
-
-                            &:first-of-type {
-                                float: left;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-
-    // -----------------------------------------------------------
-    // 					Alternate article colors
-    // -----------------------------------------------------------
-
-    // ---------------- For 3 colors -------------------------
-    article:nth-of-type(1),
-    article:nth-of-type(4),
-    article:nth-of-type(7) {
-        div.container {
-            &:before {
-                @extend .img-article-icon;
-            }
-        }
-    }
-
-    article:nth-of-type(2),
-    article:nth-of-type(5),
-    article:nth-of-type(8) {
-        div.container {
-            &:before {
-                @extend .img-article-icon2;
-            }
-        }
-    }
-
-    article:nth-of-type(3),
-    article:nth-of-type(6),
-    article:nth-of-type(9) {
-        div.container {
-            &:before {
-                @extend .img-article-icon3;
-            }
-        }
-    }
-
-
-}
-
-// end of dynamic content styles
-
-
-// -----------------------------------------------------------
-// 					Image Styles
-// -----------------------------------------------------------
-
-.img-article-icon {
-    height: 29px;
-    width: 29px;
-
-    margin-top: 6px;
-    margin-left: -1 * $testpadding2;
-    float: left;
-    background: -ms-linear-gradient(-45deg, $article-color-1 0%, $article-color-1 49%, transparent 49%, transparent 51%, lighten($article-color-1, 20%) 51%, lighten($article-color-1, 20%) 100%);
-    background: linear-gradient(135deg, $article-color-1 0%, $article-color-1 49%, transparent 49%, transparent 51%, lighten($article-color-1, 20%) 51%, lighten($article-color-1, 20%) 100%);
-
-}
-
-.img-article-icon2 {
-    height: 29px;
-    width: 29px;
-
-    margin-top: 6px;
-    margin-left: -1 * $testpadding2;
-    float: left;
-    background: -ms-linear-gradient(-45deg, $article-color-2 0%, $article-color-2 49%, transparent 49%, transparent 51%, lighten($article-color-2, 20%) 51%, lighten($article-color-2, 20%) 100%);
-    background: linear-gradient(135deg, $article-color-2 0%, $article-color-2 49%, transparent 49%, transparent 51%, lighten($article-color-2, 20%) 51%, lighten($article-color-2, 20%) 100%);
-
-}
-
-.img-article-icon3 {
-    height: 29px;
-    width: 29px;
-
-    margin-top: 6px;
-    margin-left: -1 * $testpadding2;
-    float: left;
-    background: -ms-linear-gradient(-45deg, $article-color-3 0%, $article-color-3 49%, transparent 49%, transparent 51%, lighten($article-color-3, 20%) 51%, lighten($article-color-3, 20%) 100%);
-    background: linear-gradient(135deg, $article-color-3 0%, $article-color-3 49%, transparent 49%, transparent 51%, lighten($article-color-3, 20%) 51%, lighten($article-color-3, 20%) 100%);
-
-}
-
-.img-article-icon4 {
-    height: 29px;
-    width: 29px;
-
-    margin-top: 6px;
-    margin-left: -1 * $testpadding2;
-    float: left;
-    background: -ms-linear-gradient(-45deg, $article-color-4 0%, $article-color-4 49%, transparent 49%, transparent 51%, lighten($article-color-4, 20%) 51%, lighten($article-color-4, 20%) 100%);
-    background: linear-gradient(135deg, $article-color-4 0%, $article-color-4 49%, transparent 49%, transparent 51%, lighten($article-color-4, 20%) 51%, lighten($article-color-4, 20%) 100%);
-
-}
-
-// -----------------------------------------------------------
-// 					Accessibility classes
-// -----------------------------------------------------------
-
-// From W3C http://www.w3.org/WAI/tutorials/forms/labels/#note-on-hiding-elements
-// Used to hide elements visually but keep them available for screen readers.
-.visuallyhidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-}
-
-// -----------------------------------------------------------
-// 					Responsiveness options
-// -----------------------------------------------------------
 
 @media only screen and (min-width : $course-default-width) {
 
-    .container {
-        width: $course-default-width;
-    }
+    .container { width: $course-default-width; } 
 }
 
 
-// -----------------------------------------------------------
-// 							Resets
-// -----------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------
+//
+//	  RESETS
+//
+// -----------------------------------------------------------------------------------------------------
+
+//Resets
 html {
-    margin: 0;
-    padding: 0;
-    -webkit-text-size-adjust: 100%;
+	margin: 0;
+	padding: 0;
+	-webkit-text-size-adjust: 100%;
+}
+
+//
+// -----------------------------------------------------------------------------------------------------
+//
+//	  SNAP! components
+//
+// -----------------------------------------------------------------------------------------------------
+
+//static heights for the top bars to allow them to stay in a fixed position
+$wb-bar-height:64px;
+$wb-sm-height:40px;
+
+//static height of bottom navbar
+$navbar-height:85px;
+
+body {
+	font-family: $fontFamily;	
+	font-size:14px;
+	background-color:$body-background-color;
+	
+	line-height: 140%;
+	-webkit-font-smoothing: antialiased;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+//MAIN content BOX =================================================
+
+body main.loaded
+{
+	background-color:$body-background-color;
+	z-index:0;
+	padding-top: $wb-bar-height; //calc(#{$wb-bar-height} + #{$wb-sm-height});
+	//margin-bottom:$navbar-height;
+	
+	.spinner
+	{
+		background-color:$body-background-color;
+	}
+	
+	button, input[type="radio"]
+	{
+		cursor: pointer;
+	}
+	
+	input:checked {
+	
+	  color:$interactive-color;
+		
+	}
 }
 
 
-// -----------------------------------------------------------
-// 					Archived 
-// -----------------------------------------------------------
+//TOP BAR =========================================
+//
+//background
+#wb-bar {
+	z-index: 1000;
+	height:$wb-bar-height;
+	position:fixed;
+	width:100%;
+	color:$header-text-color;
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.26);
+	padding-top:calc((#{$wb-bar-height} - 45px)/2);
 
-// ---------------- For 4 colors -------------------------
-/* for 4 colors
+
+
+	h1, h2, h3, h4, h5, h6
+	{
+		padding:0px;
+		margin:0px;		
+		font-weight:normal !important;	
+	}
+	
+	.series-title
+	{
+		vertical-align: middle;
+	}
+	.series-title .home
+	{
+		display:inline-block;
+		margin-right:30px;
+		vertical-align: middle;
+		padding-top:10px;
+	}
+
+	.top-menu{
+		width:100%;
+		padding:0px;
+		padding-left:25px;
+		padding-right:40px;
+		div.series-title, div.series-title a
+		{
+			color:$instructions-text-color !important;
+		}
+	}
+
+
+
+
+}
+
+// TITLE ROW ==================================
+//Shows course title and sub title on every page (hidden in this template)
+#wb-sttl {
+	display:none !important;
+}
+
+//BREADCRUMB / SUPERMENU ROW ==============================
+// (hidden in this template)
+
+#wb-sm
+{	
+	display:none !important;	
+}
+
+//Bottom CONTROL BAR ===============================
+// (hidden in this template)
+
+#wb-info
+{
+	display:none !important;
+}
+
+
+
+html body
+{
+	button
+	{
+		background-color:$interactive-color !important;
+		&:hover
+		{
+			background-color:$interactive-hover-color !important;
+		}
+	}
+}
+
+html body #dynamic_content
+{
+	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	//
+	//		Headers, paragraphs and list defaults
+	//
+	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+	font-weight:400;
+	
+	legend
+	{
+		font-size:14px;
+	}
+	label
+	{
+		font-weight:normal;
+	}
+	h1, h2, h3, h4, h5, h6
+	{
+		padding:0px;
+		margin:0px;
+		margin-bottom:8px;
+		
+		font-size:36px;
+		font-weight:300;
+		
+		color:$header-text-color;
+	}
+	
+	a
+	{
+		color:blue;
+	}
+	
+	p
+	{
+		// font-weight:100;
+		padding:0px;
+		margin-bottom:15px;
+	}
+	//p:last-of-type  // This was causing all single paragraphs to have no margin, even if followed by a list or something other than a p
+	p:last-child
+	{
+		margin-bottom:0px;
+	}
+	
+	.instruction
+	{
+		font-weight:700;
+		color:$instructions-text-color;
+	}
+	
+	button, .backnext .back, .backnext .next {
+		
+		font-size:18px;
+		background-color:$interactive-color;
+		border: none;
+		color:$interactive-text-color;
+		padding: 14px 28px 14px 28px;
+						
+		cursor: pointer;
+		text-align: center;
+		
+		&:hover {
+			background-color:$interactive-hover-color;
+		}
+	}
+	
+	.backnext
+	{
+		text-align:center;
+	}
+	.backnext .back, .backnext .next
+	{
+		display:inline;
+		text-decoration: none;
+		
+		a{
+			color:$interactive-text-color !important;
+		}
+		
+		&:hover
+		{
+			text-decoration: none;
+			background-color:$interactive-hover-color;
+		}
+		&.disabled
+		{
+			background-color:$interactive-disabled-color !important;
+		}
+	}
+	details {
+	
+		text-decoration: none;
+		border-radius:0px;
+		border:none;
+	
+		&:last-of-type
+		{
+			margin-bottom:0px;
+		}
+
+		p:nth-child(2), ul:nth-child(2), ol:nth-child(2)
+		{
+			margin-top:15px;
+		}
+
+		p:last-child, ul:last-child, ol:last-child
+		{
+			margin-bottom:0px;
+		}
+
+		summary {
+			
+			text-decoration: none;
+
+			border-radius:0px;
+			border:none;
+
+			&:hover, &:active
+			{
+				text-decoration: none;
+			}
+
+			&:before
+			{
+				font-family:Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", "monospace";
+				float:left;
+				position:relative;
+				content:"+";
+				font-size:20px;
+				font-weight:bold;
+				margin-right:20px;
+			}
+
+		}
+
+		&[open]
+		{
+			summary
+			{
+				&:before
+				{
+					font-family:Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", "monospace";
+					float:left;
+					position:relative;
+					content:"-";
+					font-size:20px;
+					font-weight:bold;
+					margin-right:20px;
+				}
+
+			}
+		}
+	}
+	
+	// Stuff to sort, wet template components ------
+	.wb-mm-ctrls {
+		background: $banner-color;
+		color: #fff;
+		display: table;
+		padding-top: 2em;
+		position: relative;
+		width: 100%;
+		
+
+	}
+	.wb-mm-ctrls progress {
+		-webkit-appearance: none;
+		background: #fff;
+		border: 7px solid $banner-color;
+		border-radius: 14px;
+		color: #176ca7;
+		display: block;
+		height: 30px;
+		left: 0px;
+		padding: 2px;
+		position: absolute;
+		top: 0px;
+		width: 100%;
+
+	}
+	
+	.wb-mm-ctrls
+	{
+		button
+		{
+			background-color:$banner-color !important;
+			padding:6px 12px;
+			font-size:16px;
+		}
+	}
+
+	.carousel-s2
+	{
+		figcaption
+		{
+			background-color:white;
+			color:#000;
+		}
+		ul
+		{
+			margin-top:30px;
+		}
+		li.prv, li.nxt, li.plypause
+		{
+			color:white;
+			background-color:$interactive-color;
+			border:none;
+			box-shadow:none;
+			border-radius:0px;
+			height:62.93px;
+			
+			a, span
+			{
+				background-color:transparent;
+				border:none;
+				box-shadow:none;
+				color:white;
+			}
+			
+			&:hover
+			{
+				background-color:$interactive-hover-color;
+				border:none;
+				box-shadow:none;
+				border-radius:0px;
+			}
+		}
+		li.plypause
+		{
+			padding-left:20px;
+			float:right;
+		}
+		
+	}
+	
+	
+	
+	
+}
+
+#dynamic_content
+{
+
+	
+	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	//
+	//		TOP BANNER
+	//
+	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	.top-banner
+	{
+		background-color:$banner-color;
+		h1
+		{
+			color:$banner-text-color;
+			font-size:48px;
+		}
+		color:$banner-text-color;
+		//background:url("../content/medias/images/bgtest_1.png");
+		//background-image:$header-bg-image;
+		background-size:cover;
+		background-position:top;
+		padding-top:$testpadding;
+		padding-bottom:$testpadding;
+		.container
+		{
+			padding:0px;
+			padding-left:$testpadding2;
+			padding-right:$testpadding2;
+		}
+		.instruction
+		{
+			color:$banner-text-color;
+		}
+	}
+	
+	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	//
+	//		ARTICLES
+	//
+	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	article
+	{
+		padding-top:$testpadding;
+		padding-bottom:$testpadding;
+		background-color:$main-background-color;
+	
+		div.container //first container
+		{
+			background-color:transparent;
+			padding:0px;
+			padding-left:$testpadding2;
+			padding-right:$testpadding2;
+			h1,h2,h3,h4,h5,h6
+			{
+				font-size:36px;
+			}
+		}
+		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+		//
+		//		BLOCKS
+		//
+		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+		section.container //block container
+		{
+			background-color:$alternate-background-color;
+			margin-top:100px;
+			padding:$testpadding2;
+			
+			.row
+			{
+				margin-top:30px;
+			}
+			
+			h1,h2,h3,h4,h5,h6
+			{
+				font-size:36px;
+			}
+			
+			&.menupage
+			{
+				background-color:transparent;
+				margin-top:-190px;
+			}
+		
+			// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+			//
+			//		COMPONENTS
+			//
+			// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+			.component //component styles
+			{
+				background-color:$main-background-color;
+				box-shadow: 2px 2px 5px rgba(0,0,0,0.26);
+				padding:30px;
+				height:100%;
+				h1,h2,h3,h4,h5,h6
+				{
+					font-size:24px;
+				}
+				
+				&.nobg
+				{
+					background-color:transparent;
+					box-shadow:none;
+				}
+				
+				//Menu item component
+				//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+				&.menu-item-inner{
+					
+					background-color:$alternate-background-color;
+					color:$alternate-text-color;
+					//box-shadow:none !important;
+					padding:30px;
+					
+					button
+					{
+						margin-top:30px;
+					}
+
+					h1,h2,h3,h4,h5,h6
+					{
+						color:$header-text-color;
+					}
+				}
+				
+				//Icon-box component
+				//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+				&.icon-box
+				{
+					$icon-box-padding:15px;
+					
+					padding:0px;
+					background-color:$callout-color;
+					
+					h1,h2,h3,h4,h5,h6
+					{
+						svg{margin-right:$icon-box-padding;}
+						
+						vertical-align: middle;
+						color:$callout-text-color;
+						margin:0px;
+						padding:$icon-box-padding
+					}
+					
+					div
+					{
+						border:3px solid $callout-color;
+						background-color:$main-background-color;
+						color:$main-text-color;
+						padding:$icon-box-padding;
+					}
+				}
+				
+				//Callout component
+				//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+				&.callout{
+					background-color:$callout-color;
+					color:$callout-text-color;
+					
+					h1,h2,h3,h4,h5,h6
+					{
+						color:$callout-text-color;
+					}
+					p:last-of-type
+					{
+						margin-bottom:0px;
+					}
+				}
+				
+				//Menu item component
+				//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+				
+				&.accordion
+				{
+					
+					$accordion-padding:20px;
+					
+					details summary {
+						font-size:24px;
+						font-weight:300;
+						background-color: $interactive-color;
+						color: $interactive-text-color;
+						text-decoration: none;
+						border-radius: 0px;
+						border:none;
+						padding-top:$accordion-padding;
+						padding-bottom:$accordion-padding;
+						border:1px solid $interactive-color;
+						outline:3px solid $interactive-color;
+						margin-left:-15.4px;
+						margin-right:-15.4px;
+						
+						&:hover
+						{
+							background-color:$interactive-hover-color;
+							border:1px solid $interactive-hover-color;
+							outline:3px solid $interactive-hover-color;
+						}
+					}
+
+					details summary:marker
+					{
+						display:none;
+						content:"+";
+					}
+					details[open] summary:marker
+					{
+						display:none;
+						content:"-";
+					}
+					
+
+					details {
+						background-color: $main-background-color;
+						color: $main-text-color;
+						text-decoration: none;
+						border-radius: 0px;
+						border:3px solid $interactive-color;
+
+						p:first-of-type {
+							margin-top:15px;
+						} 
+					}
+				}
+				
+				//med-questionnaire component
+				//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+				
+				&.med-questionnaire
+				{
+					fieldset
+					{
+						padding:0px;
+					}
+					
+					legend
+					{
+						font-size:16px;
+					}
+					
+					select
+					{
+						display:block;
+						width:100%;
+						padding:20px;
+						margin-bottom:20px;
+						background-color:$interactive-color;
+						color:$interactive-text-color;
+						border:none;
+						
+						&:after
+						{
+							display:none;
+						}
+						
+						&:last-of-type
+						{
+							margin-bottom:0px;
+						}
+						
+						&:hover
+						{
+							background-color:$interactive-hover-color;
+						}
+
+					}
+					
+					.question-buttons
+					{
+						margin-top:20px;
+						a
+						{
+							text-decoration:none;
+							&:last-of-type button
+							{
+								float:right;
+							}
+							&:first-of-type button
+							{
+								float:left;
+							}
+						}
+						button
+						{
+							width:49%;
+						}
+					}
+				}
+				
+				
+			}
+			
+		}	
+	}
+	
+	
+	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	//		COLOR SWAP ARTICLES
+	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	
+	/* for 4 colors
 	article:nth-of-type(1), article:nth-of-type(5), article:nth-of-type(9)
 	{
 		div.container
@@ -864,9 +779,50 @@ html {
 		}
 	}	
 	*/
-
-// ------- For multichoice questions ---------------------
-/*
+	
+	// For 3 colors
+	article:nth-of-type(1), article:nth-of-type(4), article:nth-of-type(7)
+	{
+		div.container
+		{
+			&:before
+			{
+				@extend .img-article-icon;		
+			}
+		}
+	}
+	article:nth-of-type(2), article:nth-of-type(5), article:nth-of-type(8)
+	{
+		div.container
+		{
+			&:before
+			{
+				@extend .img-article-icon2;		
+			}
+		}
+	}
+	article:nth-of-type(3), article:nth-of-type(6), article:nth-of-type(9)
+	{
+		div.container
+		{
+			&:before
+			{
+				@extend .img-article-icon3;		
+			}
+		}
+	}
+	
+	
+	
+	
+	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	//		Multichoice styles
+	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	
+	$questionnaire-feed-text-border:rgba(255,255,255,0.3);
+	$questionnaire-feed-text-border-size:rgba(255,255,255,0.3);	
+	
+	/*
 	.question-margin {
 		margin-top: 10px;
 		margin-bottom: 20px;
@@ -985,4 +941,661 @@ html {
 			}
 		}	
 		
-	}*/
+	}*/	
+
+	
+
+}
+
+
+
+
+//css images
+.img-article-icon
+{
+	height:29px;
+	width:29px;
+				
+	margin-top:6px;
+	margin-left:-1 * $testpadding2;
+	float:left;
+	background: -ms-linear-gradient(-45deg, $article-color-1 0%, $article-color-1 49%, transparent 49%, transparent 51%, lighten($article-color-1, 20%) 51%, lighten($article-color-1, 20%) 100%);
+	background: linear-gradient(135deg, $article-color-1 0%, $article-color-1 49%, transparent 49%, transparent 51%, lighten($article-color-1, 20%) 51%, lighten($article-color-1, 20%) 100%);
+	
+}
+
+.img-article-icon2
+{
+	height:29px;
+	width:29px;
+				
+	margin-top:6px;
+	margin-left:-1 * $testpadding2;
+	float:left;
+	background: -ms-linear-gradient(-45deg, $article-color-2 0%, $article-color-2 49%, transparent 49%, transparent 51%, lighten($article-color-2, 20%) 51%, lighten($article-color-2, 20%) 100%);
+	background: linear-gradient(135deg, $article-color-2 0%, $article-color-2 49%, transparent 49%, transparent 51%, lighten($article-color-2, 20%) 51%, lighten($article-color-2, 20%) 100%);
+	
+}
+
+.img-article-icon3
+{
+	height:29px;
+	width:29px;
+				
+	margin-top:6px;
+	margin-left:-1 * $testpadding2;
+	float:left;
+	background: -ms-linear-gradient(-45deg, $article-color-3 0%, $article-color-3 49%, transparent 49%, transparent 51%, lighten($article-color-3, 20%) 51%, lighten($article-color-3, 20%) 100%);
+	background: linear-gradient(135deg, $article-color-3 0%, $article-color-3 49%, transparent 49%, transparent 51%, lighten($article-color-3, 20%) 51%, lighten($article-color-3, 20%) 100%);
+	
+}
+
+.img-article-icon4
+{
+	height:29px;
+	width:29px;
+				
+	margin-top:6px;
+	margin-left:-1 * $testpadding2;
+	float:left;
+	background: -ms-linear-gradient(-45deg, $article-color-4 0%, $article-color-4 49%, transparent 49%, transparent 51%, lighten($article-color-4, 20%) 51%, lighten($article-color-4, 20%) 100%);
+	background: linear-gradient(135deg, $article-color-4 0%, $article-color-4 49%, transparent 49%, transparent 51%, lighten($article-color-4, 20%) 51%, lighten($article-color-4, 20%) 100%);
+	
+}
+
+// =============================================================================
+//// Custom course CSS =========================================================
+// =============================================================================
+
+// Language Toggle for dev
+#wb-bar .top-menu > .row #wb-lng ul.text-right > li > a {
+	&:link, &:visited {
+		color: #333333;
+	}
+	&:hover, &:focus {
+		color: #666666;
+	}
+}
+
+// Long alt text content should be hidden, but it will be referenced using the longdesc attribute
+// see: https://html.com/attributes/img-longdesc/#On-page_element
+.longdesc {
+	display: none;
+}
+
+// Add image padding in two-column layout
+@media only screen and (min-width : $course-default-width) {
+	.m0-1 .v-margin {
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
+}
+
+// Custom on m1-0
+.key-objectives {
+	.key-wrapper {
+		max-width: 100%;
+		width: 600px;
+		margin: 0 auto;
+	}
+	.row {
+		margin-top: 0 !important;
+		
+		> div {
+			margin-bottom: 30px;
+		}
+		
+		&:last-child > div {
+			margin-bottom: 0;
+		}
+	}
+	.key-objective {
+		position: relative;
+		background: #0f2a4a url(../content/medias/images/m1-keychain-bg.png) 0 0 no-repeat;
+		color: #FFFFFF;
+		min-width: 229px;
+		min-height: 196px;
+		padding-left: 90px;
+		padding-right: 20px;
+		padding-top: 90px;
+		padding-bottom: 20px;
+		
+		.index {
+			display: table;
+			position: absolute;
+			width: 64px;
+			height: 34px;
+			left: 84px;
+			top: 21px;
+			font-size: 24px;
+			font-weight: bold;
+			color: #666;
+			
+			span {
+				display: table-cell;
+				text-align: center;
+				vertical-align: middle;
+				overflow: visible;
+			}
+		}
+	}
+}
+
+// Style the tabbed layout similar to the accordion
+#dynamic_content .tabs {
+	$accordion-padding:20px;
+	
+	[role="tablist"] > li, details summary {
+		font-size:18px;
+		font-weight:300;
+		line-height: normal;
+		background-color: $interactive-color;
+		color: $interactive-text-color;
+		text-decoration: none;
+		border-radius: 0px;
+		border:none;
+		padding: 1px 1px 0 1px;
+		
+		&:hover, &:focus {
+			background-color:$interactive-hover-color;
+		}
+		
+		a {
+			padding:$accordion-padding;
+			color: $interactive-text-color;
+			outline:1px solid transparent;
+		
+			&:hover, &:focus {
+				outline:1px solid transparent;
+			}
+		}
+	}
+	
+	[role="tablist"] > li {
+		&.active {
+			a {
+				border-color: $interactive-text-color;
+			}
+		}
+	}
+
+	details summary {
+		padding-top:$accordion-padding;
+		padding-bottom:$accordion-padding;
+		border:1px solid $interactive-color;
+		outline:3px solid $interactive-color;
+		margin-left:-15.4px;
+		margin-right:-15.4px;
+		
+		&:hover, &:focus {
+			border:1px solid $interactive-hover-color;
+			outline:3px solid $interactive-hover-color;
+		}
+	}
+	
+	details summary:marker
+	{
+		display:none;
+		content:"+";
+	}
+	details[open] summary:marker
+	{
+		display:none;
+		content:"-";
+	}
+	
+	
+	details {
+		background-color: $main-background-color;
+		color: $main-text-color;
+		text-decoration: none;
+		border-radius: 0px;
+		border:3px solid $interactive-color;
+	}
+}
+
+
+@media only screen and (max-width : 991px) {
+	#dynamic_content .wb-tabs {
+		details {
+			p:first-of-type {
+				margin-top:15px;
+			} 
+		}
+	}
+}
+
+.tabs .has-hidden-first-tab {
+	// [role="tablist"] > li:first-child, .tabpanels details:first-child {
+	// 	clip: rect(1px, 1px, 1px, 1px);
+	// 	height: 1px;
+	// 	margin: 0;
+	// 	overflow: hidden;
+	// 	position: absolute;
+	// 	width: 1px;
+	// }
+	// [role="tablist"] > li {
+	// 	left: -20px;
+	// }
+}
+
+// For laying out text in a table-like way
+.layout-table {
+	display: table;
+	
+	p {
+		padding-left: 0;
+	}
+}
+.layout-row {
+	display: table-row;
+}
+.layout-cell {
+	display: table-cell;
+	padding: 5px;
+}
+
+
+// For click-to-reveal toggle interactions
+.togglable {
+	opacity: 0;
+}
+.togglable.on {
+	opacity: 1.0;
+}
+
+.text-uppercase {
+	text-transform: uppercase;
+}
+
+#dynamic_content .left-toggle {
+	width: 100%;
+	border-spacing: 0 0.25em;
+	
+	.layout-cell:first-child {
+		//width: 1px;
+	}
+	.wb-toggle {
+		border: 1px solid $interactive-color;
+		background-color: $interactive-color;
+		color: $interactive-text-color;
+		padding: 10px;
+		padding-left: 14px;
+		text-align: center;
+		font-size:24px;
+		font-weight:300;
+		text-decoration: none;
+		margin-bottom: 10px;
+		position: relative;
+		
+		&:hover, &:focus {
+			background-color: $interactive-hover-color;
+		}
+	}
+	.layout-cell {
+		vertical-align: middle;
+		
+		&:last-child {
+			border: 3px solid $interactive-color;
+			padding: 10px;
+		}
+		
+		p:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+// Fix quiz question radio and checkbox alignment
+.med-questionnaire {
+	label {
+		position: relative;
+		padding-left: 25px;;
+		font-weight: normal;
+		
+		input[type="radio"], input[type="checkbox"] {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	}
+}
+.question-blank {
+	border-bottom: 1px solid #333333;
+	display: inline-block;
+	width: 4em;
+}
+
+
+.ohs-reporting-process-container{
+  .wb-lbx {
+    position: absolute;
+	display: table;
+	/* width: 40px; */
+	width: auto;
+	height: 40px;
+	border-radius: 20px;
+	border: 1px solid #FFD14D;
+	background-color: #FFFFCC;
+	color: #333 !important;
+	font-size: 18px;
+	line-height: 40px;
+	text-align: center;
+	text-decoration: none; 
+	padding: 0px 20px
+  }
+}
+
+
+#dynamic_content .esdc-org-chart {
+	h5, ul {
+		width: 215px;
+		max-width: 100%;
+	}
+	a {
+		display: block;
+		width: 100%;
+		text-decoration: none;
+		position: relative;
+		
+		.index {
+			position: absolute;
+			top: -5px;
+			left: -25px;
+			display: table;
+			width: 40px;
+			height: 40px;
+			border-radius: 20px;
+			border: 1px solid #FFD14D;
+			background-color: #FFFFCC;
+			color: #333;
+			font-size: 18px;
+			
+			span {
+				display: table-cell;
+				text-align: center;
+				vertical-align: middle;
+			}
+		}
+	}
+	h5, a {
+		font-size: 1.5em;
+		font-weight: 400;
+		line-height: 1.5;
+		color: #FFF;
+		text-align: center;
+		padding: 10px;
+		margin-bottom: 10px !important;
+		box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.4);
+	}
+	.col-md-4:nth-child(1) {
+		a {
+			background-color: $interactive-color;
+		}
+		a:hover, a:focus {
+			background-color: $interactive-hover-color;
+		}
+		h5 {
+			background-color: $banner-color;
+		}
+	}
+	.col-md-4:nth-child(2) {
+		a {
+			background-color: #A80000;
+		}
+		a:hover, a:focus {
+			background-color: #B80000;
+		}
+		h5 {
+			background-color: #700000;
+		}
+	}
+	.col-md-4:nth-child(3) {
+		a {
+			background-color: #3B5B24;
+		}
+		a:hover, a:focus {
+			background-color: #416529;
+		}
+		h5 {
+			background-color: #243A17;
+		}
+	}
+}
+
+@media only screen and (min-width : 992px) {
+	#dynamic_content .esdc-org-chart {
+		background: transparent url(../content/medias/images/m2-cbsa-org-chart-bg.png) 15px bottom no-repeat;
+		min-height: 700px;
+		
+		.col-md-4:nth-child(2) {
+			ul {
+				margin: 0 auto;
+			}
+		}
+		.col-md-4:nth-child(3) {
+			h5, ul {
+				margin: 0 0 0 auto;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width : 991px) {
+	#dynamic_content .esdc-org-chart {
+		h5, ul {
+			margin: 0 auto;
+		}
+	}
+}
+
+.m3 {
+	.stream-links {
+		text-align: center;
+		
+		a:hover, a:focus {
+			opacity: 0.9;
+		}
+	}
+}
+
+.qs-feedback{
+	padding: 20px 5px;
+}
+
+.top-menu .glyphicon.glyphicon-th-list{
+	color:#205a9f;
+}
+
+*:focus {
+    outline: #000 auto 2px !important;
+    outline-offset: 4px !important;
+}
+
+// .external-links[target="_blank"]::after {
+//   content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
+//   margin: 0 3px 0 5px;
+// }
+
+a[target="_blank"]::after {
+  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
+  margin: 0 3px 0 5px;
+}
+
+//popper tooltip style
+
+.tooltip {
+position: relative;
+background: #1c4e8a !important;
+color: white;
+font-weight: bold;
+padding: 10px 24px;
+font-size: 13px;
+border-radius: 4px;
+display: none;
+}
+
+
+.tooltip-wrapper{
+	display: flex;
+	flex-direction: row;
+}
+
+.tooltip-close{
+	font-family: "Open Sans", Helvetica, Arial, sans-serif;
+	font-size: 11px;
+    position: absolute;
+	top: 2px;
+	right: 4px;
+	padding: 2px;
+	float: none !important;
+	color: #fff !important;
+	border: none !important;
+	
+	&:hover{
+	background-color: transparent!important;
+	}
+}
+.tooltip[data-show] {
+	display: block;
+	opacity: 1;
+}
+
+.arrow,
+.arrow::before {
+	position: absolute;
+	width: 8px;
+	height: 8px;
+	background: inherit;
+}
+
+.arrow {
+	visibility: hidden;
+}
+
+.arrow::before {
+	visibility: visible;
+content: '';
+	transform: rotate(45deg);
+}
+
+.tooltip[data-popper-placement^='top']>.arrow {
+	bottom: -4px;
+}
+
+.tooltip[data-popper-placement^='bottom']>.arrow {
+	top: -4px;
+}
+
+.tooltip[data-popper-placement^='left']>.arrow {
+	right: -4px;
+}
+
+.tooltip[data-popper-placement^='right']>.arrow {
+	left: -4px;
+}
+
+body > .global-dynamic-popup {
+	//make sure to hide the popper
+	//this will only be outputed in the html for conveniance
+	//it will NOT be used for display
+	display: none;
+	&>.modal-body{  
+		h3, h4, h5 {
+			margin: 5px 0px 5px 0px;
+			font-size: 1em;
+		}
+		
+	}
+}
+
+#wb-lng div#toolbar-title{
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	margin: 0;
+	overflow: hidden;
+	position: absolute;
+	width: 1px; 
+}
+
+.ohs-reporting-process{
+	.ohs-reporting-process-container{
+		display:block;
+	}
+
+	.accordion{
+		display:none;
+	}
+}
+
+@media (max-width: 768px){
+	.tabs{
+		[role="tablist"]{
+			flex-direction: column;
+		}
+	}
+	  #wb-bar {
+        height: auto !important;
+        padding-bottom: 10px;
+    }
+
+	.ohs-reporting-process{
+		.ohs-reporting-process-container{
+			display:none;
+		}
+	
+		.accordion{
+			display:block;
+		}
+	}
+
+	.wb-mltmd {
+		.frstpnl{
+			text-align: left !important;
+			padding-top: 1em !important;
+		}
+
+		.wb-mm-txtonly{
+			font-size: 5px !important;
+		}
+
+		.wb-mm-txtonly{
+			margin-top: -4em !important;
+		}
+
+		.lastpnl{
+			padding-top: 1em !important;
+		}
+
+		.wb-mm-ctrls{
+			button{
+				padding: 4px 6px !important;
+				font-size: 8px !important;
+				min-height: 26px !important;
+				min-width: 26px !important;
+			}
+		}
+
+		.volume{
+			display: none !important;
+		}
+	}	
+
+}
+
+.backnext{
+	ul{
+		padding: 0px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		li{
+			margin: 4px;
+		}
+	}
+
+}
+
+[role="tabpanel"]{
+padding: 1.5em 1.5em !important;
+}

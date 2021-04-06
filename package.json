@@ -1,10 +1,10 @@
 {
   "name": "framework",
-  "version": "1.7.1",
+  "version": "1.6.4",
   "description": "Framework",
   "main": "main.js",
   "scripts": {
-    "build-css": "sass --update -f core/scss/:theme/ theme/scss:theme/",
+    "build-css": "sass --update core/scss/:theme/ theme/scss:theme/",
 	"watch-css": "sass --watch core/scss/:theme/ theme/scss:theme/ common/scss/"
   },
   "author": "CSPS",

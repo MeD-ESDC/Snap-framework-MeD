@@ -1,23 +1,2 @@
-## Welcome to MeD's Snap Framework!
-
-### To fill:
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
+# snap
+Open source code library for building innovative e-learning that is accessible, usable, interoperable, mobile-friendly and multilingual. Based on the Web Experience Toolkit (WET) and bootstrap. This collaborative open source project is led by the Canada School of Public Service,  Government of Canada.

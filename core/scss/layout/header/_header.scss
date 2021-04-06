@@ -24,33 +24,34 @@
 		}
 	}
 	.top-menu {
-		h2.series-title {
-			color: $header-text-color;
+		div.series-title {
+			color: $header-text-color !important;
 			margin: 0;
 			display: table-cell;
 			vertical-align: middle;
+			font-size: 1.3em;
 			a {
 				text-decoration: none;
-				color: #000;
+				color:#355688;
+				
 			}
 		}
 		> .row {
 			display: inline-block;
 			float: right;
 			height: 100%;
-			@import '../header/_toolbar';
+			@import './_toolbar';
 		}
 	}
 }
 
-@import "../header/_supermenu";
-/* @import "./_supermenu"; */
+@import "./_supermenu";
 
 @include breakpoint-lte(medium) {
 	#wb-bar .top-menu {
 		margin: 0;
 		width: 100%;
-		h2.series-title {
+		div.series-title {
 			width: 100%;
 			padding-right: 45px;
 		}

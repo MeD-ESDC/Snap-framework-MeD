@@ -1,49 +1,69 @@
 //DO NOT MODIFY ↓
 define([
-    'jquery'
-], function($) {
-//DO NOT MODIFY ↑
+	'jquery'
+], function ($) {
+	//DO NOT MODIFY ↑
 
-	// Global vars ------------------------------------------------------------------------------------------
+	// Global vars ---------------------------------------------
+	//
 	//		For variables that need to be saved across pages
-	// ------------------------------------------------------------------------------------------------------
+	//
+	// ---------------------------------------------------------
 	var selectedAvatar = 0;
+	// ---------------------------------------------------------
 	
-
 	
-	// Initializing -----------------------------------------------------------------------------------------
-	//		Initialize when system and page is ready
-	// ------------------------------------------------------------------------------------------------------
+	
 	function initialize() {
 		setEvents();
 	}
 
 	function setEvents() {
 		$(masterStructure)
-			.on("Framework:systemReady", function() {
+			.on("Framework:systemReady", function () {
 				systemReady();
 			})
-			.on("Framework:pageLoaded", function() {
+			.on("Framework:pageLoaded", function () {
 				pageLoaded();
 			});
+		
+		var $document = $(document).on("click vclick", ".btn-wb-lbx", function( event) {
+			var $btn = $(this);
+			
+			$document.trigger( "open.wb-lbx", [
+				[
+					{
+						src: $btn.data("target"),
+						type: "inline"
+					}
+				]
+			]);
+		});
 	}
 
+	/* is called only once, when the Course has loaded*/
 	function systemReady() {
 		//console.log("Interactions:systemReady");
 	}
 
-	// Interactions  ----------------------------------------------------------------------------------------
-	//		is called on every page load, great for adding custom code to all pages
-	// ------------------------------------------------------------------------------------------------------
-	
+	/* is called on every page load, great for adding custom code to all pages*/
 	function pageLoaded() {
-		
-		
-		
-		//-----------------------------------------------------------------------------------------------------
+		//console.log("Interactions:pageLoaded");
+		// ---------------------------------------------------------------------------------------------------------
+		//
+		//    Patch for SNAP making the previous button unreachable through tabbing
+		//    Author: MeD
+		//
+		// ---------------------------------------------------------------------------------------------------------
+		$(".backnext .back").attr("tabindex", 0);
+
+		// ---------------------------------------------------------------------------------------------------------
+		//
 		//    Jump to top of page when page loaded
 		//    Author: Unknown
-		//-----------------------------------------------------------------------------------------------------
+		//
+		// ---------------------------------------------------------------------------------------------------------
+		
 		window.scrollTo(0, 0);
 		function scrollTos($obj, $animspeed)
 		{	
@@ -55,122 +75,334 @@ define([
 			}, $animspeed);
 		}
 		
-		//-----------------------------------------------------------------------------------------------------
-		//    MeD Questionnaire forms - version 2.0
-		//    Author: Various @ MeD
-		//-----------------------------------------------------------------------------------------------------
+		// ---------------------------------------------------------------------------------------------------------
+		//
+		//    Script to handle med-questionnaire forms - version 2.0
+		//    Author: Vincent Timbro @ MeD
+		//
+		// ---------------------------------------------------------------------------------------------------------
+
+		
+		
 		if ($(".med-questionnaire").length !== 0) {
-			
-			//For each med-questionnaire on a page
 			$(".med-questionnaire").each(function () {
 				
-				var the_questionnaire = $(this);	
-				var submit_button = the_questionnaire.find(".btn-med");
+				//new code for retry
+				var the_questionnaire = $(this);
+				var retryattempts = 0;
+				if(the_questionnaire.hasClass("retry2"))
+				{
+					retryattempts = 2;
+				}				
+				
+				var submit_button = the_questionnaire.find("button");
 				var dropdowns = the_questionnaire.find("select");
 				var inputs = the_questionnaire.find("input");
 				var result = "unknown";
+				var multi_question = the_questionnaire.find(".question");
 				var onewaschecked = false;
 				
 				resetAssociationFeedback(the_questionnaire);
 
-				//check to make sure all inputs are set to correct  
+				//check to make sure all inputs are set to correct                                                               
 				submit_button.click(function () {
-					
+					//reset
 					resetAssociationFeedback(the_questionnaire);
 					result = "unknown";
-					onewaschecked = false;
-						
-					// for Multiple Choice questions ---------------------------------------------------
-					inputs.each(function (index) {
-						//check if any answer was submitted
-						if (inputs.eq(index).is(":checked")) {
-							onewaschecked = true;
-							result = adjustresult(inputs.eq(index).val(), true, result);
-						}
-						else
-						{
-							result = adjustresult(inputs.eq(index).val(), false, result);
-						}
-					});
 
-					//no answer submitted
-					if (onewaschecked === false && inputs.length > 0) {
-						result = "unanswered";
+					if (multi_question.length !== 0) {
+						multi_question.each(function (index) {
+							inputs = multi_question.eq(index).find("input");
+							onewaschecked = false;
+							inputs.each(function (j) {
+								if (inputs.eq(j).is(":checked")) {
+									onewaschecked = true;
+									result = adjustresult(inputs.eq(j), true, result, retryattempts);
+								}
+								{
+									result = adjustresult(inputs.eq(index), false, result, retryattempts);
+								}
+							});
+
+							if (onewaschecked === false && inputs.length > 0) {
+								result = "unanswered";
+							}
+
+							dropdowns = multi_question.eq(index).find("select");
+							dropdowns.each(function () {
+								result = adjustresult($(this).find(":selected"), true, result, retryattempts);
+							});
+						});
+					} else {
+						onewaschecked = false;
+						inputs.each(function (index) {
+							if (inputs.eq(index).is(":checked")) {
+								onewaschecked = true;
+								result = adjustresult(inputs.eq(index), true, result, retryattempts);
+							}
+							else
+							{
+								result = adjustresult(inputs.eq(index), false, result, retryattempts);
+
+							}
+						});
+						if (onewaschecked === false && inputs.length > 0) {
+							result = "unanswered";
+						}
+
+						dropdowns.each(function () {
+							result = adjustresult($(this).find(":selected"), true, result, retryattempts);
+						});
 					}
-								
-					// for Dropdown questions ---------------------------------------------------------
-					dropdowns.each(function () {
-						result = adjustresult($(this).find(":selected").val(), true, result);
-					});
-					// --------------------------------------------------------------------------------
+
+					//finalize answer
+					if(result === "attempt1" || result === "attempt2")
+					{
+						if(retryattempts === 2){retryattempts = 1;}
+						else if(retryattempts === 1){retryattempts = 0;}
+					}
 					
-					displayAssocFeedback(the_questionnaire, result); // display appropriate feedback
+					displayAssocFeedback(the_questionnaire, result);
+
 				});
 			});
+
 		}
 
-		//-----------------------------------------------------------------------------------------------------
-		//    Function: Answer check w/ multiple attempts 
-		//    Author: Various @ MeD
-		//-----------------------------------------------------------------------------------------------------
-		function adjustresult(value, selected, currentresult) {
+		function adjustresult(obj, checked, currentresult, numretry) {
+			
+			if (currentresult === "unanswered") {
+				return "unanswered";
+			} else if (currentresult === "incorrect" || currentresult === "attempt1" || currentresult === "attempt2") 
+			{
+				if (obj.val() === undefined || obj.val() === "unanswered") 
+				{
+					return "unanswered";
+				} 
+				else if(numretry === 2)
+				{
+					return "attempt1";
+				} else if(numretry === 1)
+				{
+					return "attempt2";
+				} 
+				else 
+				{
+					return "incorrect";	
+				}//
+					
+			} 
+			else if (currentresult === "correct" || currentresult === "unknown") 
+			{
+				if (obj.val() === undefined || obj.val() === "unanswered" || obj.val() === "unknown") 
+				{
+					return "unanswered";
+				}
 				
-			// Previous result indicated that the question was unanswered - this means the question has a portion with radio buttons or checkboxes and none of them were selected.
-			
-			var returnresult = "null"
-			
-			switch (currentresult){
-					
-				case "unanswered":
-					returnresult = "unanswered"; break;
-				case "incorrect":
-					returnresult = "incorrect"; break;
-				case "correct":
-				case "unknown":
-					
-					if (value === undefined || value === "unanswered" || value === "unknown"){
-						returnresult = "unanswered";
+				
+				else if (obj.val() !== "correct")
+				{
+					if(checked)
+					{
+						if(numretry === 2)
+						{
+							return "attempt1";
+						} 
+						else if(numretry === 1)
+						{
+							return "attempt2";
+						}
+						else 
+						{
+							return "incorrect";	
+						}
 					}
-					else if(value === "correct"){
-						(selected) ? returnresult = "correct" : returnresult = "incorrect";
+					else
+					{
+						return "correct";
 					}
-					else if (value !== "correct"){
-						(selected) ? returnresult = "incorrect" : returnresult = "correct";
+				} 
+				else if(obj.val() === "correct")
+				{
+					if(checked)
+					{
+						return "correct";
 					}
-					break;
-					
-				default:
-					console.log("something went wrong");
-					console.log("Value of current was: " + value + ", result was: " + currentresult + ", return result was " + returnresult);
+					else
+					{
+						if(numretry === 2)
+						{
+							return "attempt1";
+						} 
+						else if(numretry === 1)
+						{
+							return "attempt2";
+						}
+						else 
+						{
+							return "incorrect";	
+						}
+					}
+						
+				}
 			}
-			
-			return returnresult;
+			else
+			{
+				console.log("something went wrong");
+				console.log("Value of current was: " + obj.val() + ", result was: " + currentresult + ",num retries was: " + numretry);
+			}
 		}
-		
-		//-----------------------------------------------------------------------------------------------------
-		//    Function: Reset both feedback to invisible
-		//    Author: Various @MeD
-		//-----------------------------------------------------------------------------------------------------
+
+		//reset both feedback to invisible
 		function resetAssociationFeedback(obj) {
+
 			obj.find(".feedback").addClass("wb-inv");
 		}
 
-
-		//-----------------------------------------------------------------------------------------------------
-		//    Function: Display appropriate feedback
-		//    Author: Various @MeD
-		//-----------------------------------------------------------------------------------------------------
-
+		//display appropriate feedback
 		function displayAssocFeedback(exercise, feedvalue) {
 			exercise.find(".feedback." + feedvalue).removeClass("wb-inv");
 		}
-			
-		//-----------------------------------------------------------------------------------------------------
-		//    Scripts for accessbility checking
-		//    Author: Various
-		//-----------------------------------------------------------------------------------------------------
 		
-		// Check page to have only one h1 tag -----------------------------------------------------------------
+		
+		
+		// -----------------------------------------------------------------------------------------------
+		//
+		//		Older questionnaire code, works with radio buttons and checkboxes by using OneAnswer or MultiAnswer
+		//		Author: Various
+		//
+		// -----------------------------------------------------------------------------------------------
+		
+		if($(".MeD_OneAnswer_question").length !== 0 || $(".MeD_MultiAnswer_question").length !== 0) 
+		{
+			var oneAnswerQuestions = $(".MeD_OneAnswer_question");
+			var multiAnswerQuestions = $(".MeD_MultiAnswer_question");
+			
+			oneAnswerQuestions.each(function (oneindex)
+			{
+				var selected;
+				var selectedValue = "";
+				
+				$(this).find(".feedback").addClass("invisible");
+				
+				$(this).find("button").click(function ()
+				{
+					oneAnswerQuestions.eq(oneindex).find(".feedback").addClass("invisible");
+					
+					//check value of selected radio button 
+		
+					selected = oneAnswerQuestions.eq(oneindex).find("input:checked");
+					selectedValue = selected.val();
+					
+					
+					if(selectedValue === undefined)
+					{
+						oneAnswerQuestions.eq(oneindex).find(".nonechecked").removeClass("invisible");
+						scrollTo(oneAnswerQuestions.eq(oneindex).find(".nonechecked"));
+					}
+					else
+					{
+						oneAnswerQuestions.eq(oneindex).find("." + selectedValue).removeClass("invisible");
+						scrollTo(oneAnswerQuestions.eq(oneindex).find("." + selectedValue));
+					}
+					
+				});
+			});
+			
+			
+			multiAnswerQuestions.each(function (multiindex)
+			{
+				var correct = true;
+				var numberCorrect = 0;
+				var numberCorrectChecked = 0;
+				var nonechecked = true;	
+				
+				//count each that should be correct
+				$(this).find("input").each(function ()
+				{
+					if($(this).val() === "correct")
+					{
+						numberCorrect += 1;
+					}	
+				});	
+				
+				
+				$(this).find(".feedback").addClass("invisible");
+				
+				$(this).find("button").click(function ()
+				{
+					correct = true;
+					numberCorrectChecked = 0;
+					nonechecked = true;
+					
+					multiAnswerQuestions.eq(multiindex).find(".feedback").addClass("invisible");
+					
+					multiAnswerQuestions.eq(multiindex).find("input").each(function (){
+						
+						if($(this).val() === "incorrect" && $(this).prop("checked") === true)
+						{
+							correct = false;
+							nonechecked = false;
+						}
+						
+						if($(this).val() === "correct" && $(this).prop("checked") === true)
+						{
+							numberCorrectChecked += 1;
+							nonechecked = false;
+						}
+												   
+					});
+					
+					if(nonechecked)
+					{
+						multiAnswerQuestions.eq(multiindex).find(".nonechecked").removeClass("invisible");
+						scrollTo(multiAnswerQuestions.eq(multiindex).find(".nonechecked")); 
+					}
+					else 
+					{
+						if(correct !== false)
+						{
+							if(numberCorrectChecked === numberCorrect)
+							{
+								//it was correct
+								multiAnswerQuestions.eq(multiindex).find(".correct").removeClass("invisible");
+								scrollTo(multiAnswerQuestions.eq(multiindex).find(".correct"));
+							}
+							else
+							{
+								//you did not select all of the correct ones
+								multiAnswerQuestions.eq(multiindex).find(".incorrect").removeClass("invisible");
+								scrollTo(multiAnswerQuestions.eq(multiindex).find(".incorrect"));
+							}
+						}
+						else
+						{
+							//it was incorrect
+							multiAnswerQuestions.eq(multiindex).find(".incorrect").removeClass("invisible");
+							scrollTo(multiAnswerQuestions.eq(multiindex).find(".incorrect"));
+						}
+					}
+					
+					
+				});
+				
+				
+				
+				
+			});
+
+		}
+		
+		
+		// ---------------------------------------------------------------------------------------------------------
+		//
+		//		Scripts to simplify accessibility checking
+		//		Author: Various
+		//
+		// ---------------------------------------------------------------------------------------------------------
+
+		//--- make sur epage has only one h1 tag
+		
 		if($("h1").length > 1)
 		{
 			$("h1").each(function(index)
@@ -181,29 +413,25 @@ define([
 			$("h1").eq(0).removeClass("accessibility_error");
 		}
 		
-		//-----------------------------------------------------------------------------------------------------
-		//    Avatar Selector
-		//    Author: Unknown
-		//-----------------------------------------------------------------------------------------------------
 		
+		// -----------------------------------------------------------------------------------------------
+		//
+		//                         Avatar Selector
+		//
+		// -----------------------------------------------------------------------------------------------
+
 		if ($(".avatar_picker").length !== 0) {
-			//To select avatar using the button elements in ".avatar_picker" div
 			$(".avatar_picker").children("button").each(function (index) {
 				$(this).click(function () {
 					//alert("User selected Avatar # " + (index + 1));
 					selectedAvatar = (index + 1);
 				});
 				
-				refreshContestant(); //to refresh portraits in button elements
+				refreshContestant();
 			});
 		}
-		refreshContestant(); //to refresh full size images
-		
-		//-----------------------------------------------------------------------------------------------------
-		//    Function: Refresh contestants for avatars
-		//    Author: Unknown
-		//-----------------------------------------------------------------------------------------------------
-		
+		refreshContestant();
+
 		function refreshContestant() {
 			if ($(".avatar_full").length !== 0) {
 				$(".avatar_full").attr("src", "content/medias/avatars/contestant" + selectedAvatar + "_full.png");
@@ -213,49 +441,51 @@ define([
 				$(".avatar_full").attr("src", "content/medias/avatars/contestant" + selectedAvatar + "_portrait.png");
 			}
 		}
-		
-		//-----------------------------------------------------------------------------------------------------
-		//    Object Remover
-		//    Author: MeD
-		//-----------------------------------------------------------------------------------------------------
-		
-			//$("#wb-sm").remove();
-			//$("#wb-sttl").parent().parent().remove();
-			//$("#topbacknext").remove();
-			loadFAQ();
-		
-		//-----------------------------------------------------------------------------------------------------
-		//    Function: For FAQ favorites
-		//    Author: Unknown
-		//-----------------------------------------------------------------------------------------------------
 
-		function loadFAQ() {
-			var itemID;
-
-			//list of learneable items
-			for(var i=0;i<$(".learn-list>li").length;i++){
-				itemID=$(".learn-list>li>.hint").eq(i).attr("id");
-				$(".learn-list>li>.hint").eq(i).append("<a data-fav=\"#"+itemID+"\" class='favbtntest'>toggle favourite</a>");
-			}	
-			//this is the list of buttons for a predefined search
-			for(i=0;i<$(".search-list>button").length;i++){
-				$(".search-list>button").eq(i).click(function() {
-					var searchText=($(this).text()==="*")?"":$(this).text();
-					$(".wb-fltr-inpt").val(searchText)
-					var e = jQuery.Event("keyup");
-					//e.which = 50; // # Some key code value
-					$(".wb-fltr-inpt").trigger(e);
-					});
+		// -------------------------------------------------------------------
+		//
+		//                        Scroll to accordion
+		//
+		// -------------------------------------------------------------------
+		/*if ($("details").length !== 0) {
+			$("details summary").click(function () {
+				
+				if($(this).attr("aria-expanded") === "false")
+				{
+					scrollTos($(this), 120);
+				}
+			});
+		}*/
+		
+		// ---------------------------------------------------------------------------
+		//
+		//		Auto container - since container was removed from the index, 
+		//		this adds a container if none are found on the page
+		//
+		// ---------------------------------------------------------------------------
+		/*
+		var $basechildren = $("#dynamic_content").children();
+		$basechildren.each(function(){
+			
+			if($(this).hasClass("container") || $(this).hasClass("container-fluid"))
+			{
+				//content is in a container, no worries!
 			}
-		}	
-
-
+			else
+			{
+				if($(this).is("style") || $(this).is("script"))
+				{
+					//ignore style tag
+				}
+				else
+				{
+					$(this).wrap("<section class='container'></section>");
+				}
+			}
 			
-			
-	} //End of function pageload
-	
-	
-	
-	initialize(); //is called only once, when the Course has loaded
-	
+		});*/
+	}
+
+	initialize();
+
 });

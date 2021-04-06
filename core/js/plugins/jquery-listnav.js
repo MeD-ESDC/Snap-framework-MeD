@@ -118,7 +118,6 @@
 	}
 
     $.fn.listnav = function (options) {
-
         var opts = $.extend({}, $.fn.listnav.defaults, options),
             letters = ['_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '-'],
             firstClick = false,
@@ -371,7 +370,7 @@
 
                     if ( counts[letters[i]] === undefined ) {
 
-                        $('.' + letters[i], $letters).addClass('ln-disabled');
+                        $('.' + letters[i], $letters).addClass('ln-disabled').attr("aria-hidden","true").attr("tabIndex",-1);
 
                     }
                 }
@@ -444,7 +443,7 @@
                         if ( letter === 'all' ) {
                             // If ALL button is clicked:
 
-                            $list.children().addClass("listNavShow").removeClass("listNavHide"); // Show ALL
+                            $list.children().addClass("listNavShow").removeClass("listNavHide").attr("tabindex",'0').focus(); // Show ALL
 
                             noMatches.addClass("listNavHide").removeClass("listNavShow"); // Hide the list item for no matches
 
@@ -489,9 +488,7 @@
                         $this.addClass('ln-selected');
 
                         $this.blur();
-
                         if (!firstClick && (opts.onClick !== null)) {
-
                             opts.onClick(letter);
 
                         } else {
@@ -504,8 +501,9 @@
 
 					if ($(".mfp-container").HasScrollBar()){						
 						$('.listNavShow').last()
-						backButton = $('.listNavShow').last().not('.backBtn').addClass('backBtn').append('<a class="btn btn-default" href="#backToTop"></a>');
-						$(backButton).find('a.btn-default').html(labels.nav.backToTop);
+						// backButton = $('.listNavShow').last().not('.backBtn').addClass('backBtn').append('<a class="btn btn-default" href="#backToTop"></a>');
+                        // $(backButton).find('a.btn-default').html(labels.nav.backToTop);
+                        opts.onClick(letter);
 					}
                 }); // end click()
 
@@ -513,6 +511,9 @@
 
             // creates the HTML for the letter links
             //
+
+            
+
             function createLettersHtml() {
                 var html = [];
                 for (var i = 1; i < letters.length; i++) {
@@ -525,9 +526,11 @@
                 // Remove inline styles, replace with css class
                 // Element will be repositioned when made visible
             }
+
             init();
         });
     };
+     
 
     $.fn.listnav.defaults = {
         initLetter: '',
@@ -546,3 +549,5 @@
         filterSelector: ''
     };
 })(jQuery);
+
+

@@ -7,9 +7,14 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div class="wb-mm-ctrls">
 	<div class="frstpnl">
 		<div class="btn-group">
-			<button type="button" class="btn btn-default playpause" aria-controls="{{mId}}"  aria-labelledby="{{mId}}" title="{{play}}" data-state-on="{{play}}" data-state-off="{{pause}}"><span class="glyphicon glyphicon-play"><span class="wb-inv">{{play}}</span></span></button>
-			<button type="button" class="btn btn-default mute" aria-controls="{{mId}}" aria-labelledby="{{mId}}" title="{{mute_on}}" data-state-on="{{mute_on}}" data-state-off="{{mute_off}}" aria-pressed="false"><span class="glyphicon glyphicon-volume-up"><span class="wb-inv">{{mute_on}}</span></span></button>
-			<input type="range" class="volume" aria-controls="{{mId}}" aria-labelledby="{{mId}}" title="{{volume}}" min="0" max="100" value="100" step="5" />
+			<button type="button" class="btn btn-default playpause" data-state-on="{{play}}" data-state-off="{{pause}}"
+				aria-label="{{play}}" aria-pressed="false"><span class="glyphicon glyphicon-play"><span
+						class="wb-inv">{{play}}</span></span></button>
+			<button type="button" class="btn btn-default mute" data-state-on="{{mute_on}}" data-state-off="{{mute_off}}"
+				aria-pressed="false" aria-label="{{mute_on}}"><span class="glyphicon glyphicon-volume-up"><span
+						class="wb-inv">{{mute_on}}</span></span></button>
+			<input type="range" class="volume" title="{{volume}}" min="0" max="100" value="100" step="5"
+				aria-label="volume control" />
 		</div>
 	</div>
 	<div class="tline">
@@ -23,11 +28,13 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 	</div>
 	<div class="lastpnl">
 		<div class="btn-group">
-			<button type="button" class="btn btn-default cc" aria-labelledby="{{mId}}" aria-controls="{{mId}}" title="{{cc_on}}" data-state-on="{{cc_on}}" data-state-off="{{cc_off}}" aria-pressed="false"><span class="glyphicon glyphicon-subtitles"><span class="wb-inv">{{cc_on}}</span></span></button>
+			<button type="button" role="button" class="btn btn-default cc" aria-labelledby="{{mId}}"
+				aria-controls="{{mId}}" title="{{cc_on}}" data-state-on="{{cc_on}}" data-state-off="{{cc_off}}"
+				aria-expanded="false"><span class="glyphicon glyphicon-subtitles"><span
+						class="wb-inv">{{cc_on}}</span></span></button>
 		</div>
 	</div>
 </div>
 <!-- DataAjaxFragmentEnd -->
+
 </html>
-
-

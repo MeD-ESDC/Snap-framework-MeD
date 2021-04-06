@@ -29,27 +29,19 @@ define([
                           : null;
                           
          if (isLockedIn) {
-			 
-             //locked in, CANCEL EVERYTHING
+             //locked in
             alert(labels.nav.lockedIn);
             return false;
-
-			 
-         }
-			 if(masterStructure.isSoftLocked){
-				 
-				 if(!confirm(labels.nav.isSoftLockedMessage)){
-					 return false;
-				 }
-				 masterStructure.isSoftLocked=false
-			 }
-
-         var currentPos = masterStructure.currentSub.sPosition;
+         }/* else { SC changé d'emplacement maintnenat dans lockingSystem.onpageloaded
+            //reset global flag
+            masterStructure.allowedLockedInExit = false;
+         }*/
+         var currentPos = Utils.getStringFromArray(masterStructure.currentNav);
          //don't change page if target is the current one
          if (itemID !== currentPos) {
             var aPosition = Utils.getArrayFromString(itemID);
             var isLocked = CoreSettings.enableLockingSystem ? this.lockingSystem.isLocked(aPosition) : null;
-            if (isLocked ) {
+            if (isLocked) {
                //locked out
                alert(labels.nav.lockedOut);
                return false;
@@ -89,14 +81,13 @@ define([
 
          _.delay(function() {
             Utils.showLoadingBox(function() {
-				$("html").removeClass("page404");
                $(that).trigger('Router:loadPage');
                
                //unload the page
                /*CSPS-TD ↓ */
                window.fQsEventDispatcher = null;
                /* ↑ CSPS-TD*/
-				if(CoreSettings.editMode){subIsMissing=false;}
+
                if (!subIsMissing) {
                   var targetDiv = (masterStructure.loadAllMode) ? masterStructure.loadAllPlace() : CoreSettings.contentContainer;
                   $(targetDiv).load(pagePath, function(response, status, xhr) {

@@ -4,7 +4,7 @@
 //
 // -----------------------------------------------------
 
-$fontFamily: "Open Sans",Helvetica, sans-serif;
+$fontFamily: "Open Sans",Helvetica,Arial,sans-serif;
 $body-background-color: white;
 $course-default-width:1024px;
 $header-bg-image:url("../content/medias/images/bgtest.png");
@@ -31,7 +31,8 @@ $header-text-color: #0077c8;
 $instructions-text-color: #333333;
 
 $interactive-color: #1c4e8a;
-$interactive-hover-color: #205a9f;
+$interactive-hover-color: #2976d3;
+//$interactive-hover-color: #205a9f;
 $interactive-disabled-color: #5b5b5b;
 $interactive-text-color: #fff;
 
@@ -197,9 +198,9 @@ $header-background-color: $snap-topbar-background-color;
 $header-banner-title-color: $snap-topbar-background-color;
 $header-module-name-color: #555;
 $header-button-background-color: transparent;
-$header-button-color-hover: #000;
+$header-button-color-hover: #fff;
 $header-button-background-color-hover: transparent;
-$header-button-color: #000;
+$header-button-color: #fff;
 //Top Navigation
 $top-nav-text-color: $base-text-color;
 $top-nav-button-color: $base-text-color;
@@ -212,8 +213,8 @@ $hamburger-menu-color-mobile: #fff;
 //Toolbar
 $toolbox-link-color: $base-text-color;
 $toolbox-link-background-color: #fff;
-$toolbox-link-color-hover: $base-text-color;
-$toolbox-link-background-color-hover: #ccc;
+$toolbox-link-color-hover: #fff;
+$toolbox-link-background-color-hover: #6e6e6e;
 
 //Supermenu
 $supermenu-button-color: $base-text-color;
@@ -223,8 +224,8 @@ $supermenu-button-background-color-hover: $primary-color-lighter;
 $supermenu-dropdown-button-color: $base-text-color;
 $supermenu-dropdown-border-color: #000;
 $supermenu-dropdown-button-background-color: #fff;
-$supermenu-dropdown-button-color-hover: #000;
-$supermenu-dropdown-button-background-color-hover: #e6e6e6;
+$supermenu-dropdown-button-color-hover: #fff;
+$supermenu-dropdown-button-background-color-hover: #6e6e6e;
 //mobile only
 $supermenu-link-color: #555;
 //icons

@@ -19,7 +19,7 @@ define([
 				"aria-setsize": this.setsize
 				})
 			this.$el.children("a").attr({
-				"tabindex": "-1",
+				// "tabindex": "-1",
 				"aria-haspopup": "true",
 				"aria-controls": "popup"//,
 				//"role": "menuitem"

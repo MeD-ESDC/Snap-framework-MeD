@@ -9,7 +9,6 @@ define([
 	return BaseModule.extend({
 		initialize: function(options) {
 			this.options = options || {};
-			this.master=options.master;
 
 			this.scorm = this.options.scorm;
 			this.sitemapController = this.options.sitemapController;
@@ -20,10 +19,10 @@ define([
 
 		setListeners: function() {
 			var that = this;
-			$(this).on('ProgressController:updateViewed', function() {
+			$(this).on('ProgressController:updateViewed', function(e) {
 				that.updateViewed();
 			});
-			$(this).on('ProgressController:updateViewCount', function() {
+			$(this).on('ProgressController:updateViewCount', function(e) {
 				that.updateViewCount();
 			});
 		},
@@ -32,25 +31,24 @@ define([
 		 * this method is used by LoadTarget to check if all pages from the structure were viewed
 		 */
 		checkViewedCompletion: function() {
-			for (var i = 0; i < this.master.subs.length; i++) {
-				if (!this.master.subs[i].viewed){ return false;}
+			for (var i = 0; i < masterStructure.subs.length; i++) {
+				if (!masterStructure.subs[i].viewed) return false;
 			}
 			return true;
 		},
 
 		updateViewed: function() {
-			if (!this.master.currentSub.viewed) {
-				
+			if (!masterStructure.currentSub.viewed) {
 				//set its viewed page
-				this.master.currentSub.setViewedPage();
-				$(this.sitemapController).trigger("SitemapController:updateViewed", [this.master.currentSub]);
+				masterStructure.currentSub.setViewedPage();
 
-				var parentNode = this.master.currentSub.parent;
+				$(this.sitemapController).trigger("SitemapController:updateViewed", [masterStructure.currentSub]);
+
+				var parentNode = masterStructure.currentSub.parent;
 				var viewed = true;
-				var originalDepth = this.master.currentSub.depth;
-				if (parentNode !== null){
+				var originalDepth = masterStructure.currentSub.depth;
 				// Verify if all pages were viewed from the top level menu
-				while (typeof parentNode !== "undefined" && viewed && parentNode.depth >= 0) {
+				while (typeof parentNode != "undefined" && viewed && parentNode.depth >= 0) {
 					if (parentNode.depth >= 0 || parentNode.depth < originalDepth) {
 						viewed = parentNode.checkViewedSubs();
 						if (viewed) {
@@ -58,7 +56,6 @@ define([
 						}
 					}
 					parentNode = parentNode.parent; // now go check this parent's parent
-				}
 				}
 			}
 			//trigger complete on page view
@@ -69,20 +66,20 @@ define([
 				}
 			}
 			//on last, mark module as done.
-			if (this.master.isLastOfLevel() < this.master.maxDepth && CoreSettings.markModuleAsViewedOnLastPage) {
-				if (this.master.flatList[this.master.flatList.length-1].flatID===this.master.currentSub.flatID){
-					this.master.currentSub.getTop().setViewedSubs();
-				}else if(this.master.currentNav[0]!==this.master.subs[this.master.subs.length-1].aPosition[0]){
-					//console.log(this.master.subs[this.master.currentSub.getTop().modnum+1].findFirst().previous.flatID+" "+this.master.currentSub.flatID)
-					if(this.master.subs[this.master.currentSub.getTop().modnum+1].findFirst().previous.flatID===this.master.currentSub.flatID){
-						this.master.currentSub.getTop().setViewedSubs();
+			if (masterStructure.isLastOfLevel() < masterStructure.maxDepth && CoreSettings.markModuleAsViewedOnLastPage) {
+				if (masterStructure.flatList[masterStructure.flatList.length-1].flatID==masterStructure.currentSub.flatID){
+					masterStructure.currentSub.getTop().setViewedSubs();
+				}else if(masterStructure.currentNav[0]!=masterStructure.subs[masterStructure.subs.length-1].aPosition[0]){
+					//console.log(masterStructure.subs[masterStructure.currentSub.getTop().modnum+1].findFirst().previous.flatID+" "+masterStructure.currentSub.flatID)
+					if(masterStructure.subs[masterStructure.currentSub.getTop().modnum+1].findFirst().previous.flatID==masterStructure.currentSub.flatID){
+						masterStructure.currentSub.getTop().setViewedSubs();
 					}
 				}
 			}
 			var stringViewed = "";
 			// save viewed subs in scorm	
-			for (var i = 0; i < this.master.subs.length; i++) {
-				stringViewed += this.master.subs[i].saveViewedSubs();
+			for (var i = 0; i < masterStructure.subs.length; i++) {
+				stringViewed += masterStructure.subs[i].saveViewedSubs();
 			}
 			trackingObj.saveData("vp", stringViewed);
 		},
@@ -112,30 +109,30 @@ define([
 		updateViewCount: function() {
 			Logger.log("ProgressController:updateViewCount");
 			
-			this.master.modCount = 0;
-			this.master.totalViews = 0;
-			for (var modLoop = 0; modLoop < this.master.subs.length; modLoop++) {
-				if (!this.master.subs[modLoop].isPage) {
-					this.master.modCount++;
-					this.master.subs[modLoop].viewCount = 0;
-					this.master.subs[modLoop].totalPages = 0;
+			masterStructure.modCount = 0;
+			masterStructure.totalViews = 0;
+			for (var modLoop = 0; modLoop < masterStructure.subs.length; modLoop++) {
+				if (!masterStructure.subs[modLoop].isPage) {
+					masterStructure.modCount++;
+					masterStructure.subs[modLoop].viewCount = 0;
+					masterStructure.subs[modLoop].totalPages = 0;
 				}
 			}
 
-			for (var flatLoop = 0; flatLoop < this.master.flatList.length; flatLoop++) {
-				//console.log(this.master.flatList[flatLoop].aPosition[0])
+			for (var flatLoop = 0; flatLoop < masterStructure.flatList.length; flatLoop++) {
+				//console.log(masterStructure.flatList[flatLoop].aPosition[0])
 
 				// causing problem when aPosition is a module greater than 9 (string with lenght = 2)
-				//var topMod = ObjSubUtils.findSub(String(this.master.flatList[flatLoop].aPosition[0]));
+				//var topMod = ObjSubUtils.findSub(String(masterStructure.flatList[flatLoop].aPosition[0]));
 				var tab = [];
-				tab.push(this.master.flatList[flatLoop].aPosition[0]);
+				tab.push(masterStructure.flatList[flatLoop].aPosition[0])
 				var topMod = ObjSubUtils.findSub(tab);
 				
 				if (topMod) {
 					topMod.totalPages++;
-					if (this.master.flatList[flatLoop].viewed) {
+					if (masterStructure.flatList[flatLoop].viewed) {
 						topMod.viewCount++;
-						this.master.totalViews++;
+						masterStructure.totalViews++;
 					}
 				}
 			}

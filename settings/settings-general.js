@@ -2,23 +2,23 @@
 
 define({
 	debugMode: false,
-	enableAdminMode : false,
+	enableAdminMode: false,
 
 	contentContainer: "#dynamic_content",
-	
+
 	cssFileName: "theme.css",		//name of the css theme file to load.
 
 
 	skipSplash: false,
 
 	/*------------------ Course info -----------------*/
-	courseLegacyCode:"C000",
+	courseLegacyCode: "C000",
 	courseTitle_en: "The Catalog",
 	courseTitle_fr: "Le catalogue",
 	courseSubtitle_en: "",
 	courseSubtitle_fr: "",
 	seriesTitle_en: "Snap Style Guide",
-	seriesTitle_fr: "Snap Style Guide FR",	
+	seriesTitle_fr: "Snap Style Guide FR",
 
 	/*------------------ Toolbar -----------------*/
 	showLangSwitch: false,
@@ -29,11 +29,11 @@ define({
 	showFavorites: false,
 	showGlossary: false,
 	showResources: true,
-	showExit: true,	
+	showExit: true,
 	showPrint: false, 		//PLEASE don't turn this on!!
 	showSecondHome: false,
 	//in construction
-	addToolboxPage:[
+	addToolboxPage: [
 		//example
 		//local page loaded through ajax (remember to add the lightbox code (copy paste from Glossary))
 		//{ "name_en":"Custom popup", "name_fr":"popup \"custom\"", "filename_en":"custom_en", "filename_fr":"custom_fr"},
@@ -49,42 +49,42 @@ define({
 
 	/*------------------ System settings ---------------*/
 
-	requireLoadPageScript: false, 	
-	
-	enablePopClose:null, 
+	requireLoadPageScript: false,
+
+	enablePopClose: null,
 	environment: null, //local, public, prod
 	connectionMode: null,//"scorm", 	//currently only supports "scorm" , noscorm
 
 	/*------------------ LEARN-O-MATIC ---------------*/
-	editMode: false, 
-	
-	
-	
-	/*------------------ Scorm settings ---------------*/	
+	editMode: false,
+
+
+
+	/*------------------ Scorm settings ---------------*/
 	trackAllPages: true,
 	triggerCompletionWhenAllPagesViewed: true,
 	markModuleAsViewedOnLastPage: false, //broken	
 
 	/*------------------ DATA / Google Analytics -----------------*/
-	
+
 	googleAnalyticsID: "",	/*UA-101907595-7*/
 
 	/*------------------ Navigation -----------------*/
-	topNavFullwidth:     true,
-	breadCrumbs: 	     true,
-	loopLevel: 		     3,		// 0 is a course loop, 1 takes you back to home after each module, 3 is none (2 makes no sense so far)
-	lvlPageOf:  	     0,		//Level at which the pageOf acts (lvlTimeline)
-	pageOfPermissive:    true, 	//determines if the pageOf will take into account subPages (tlPermissive)
-	navigationMode:      1, //1 is legacy, 2 is P930, 3 is newNav
-	
+	topNavFullwidth: true,
+	breadCrumbs: true,
+	loopLevel: 3,		// 0 is a course loop, 1 takes you back to home after each module, 3 is none (2 makes no sense so far)
+	lvlPageOf: 0,		//Level at which the pageOf acts (lvlTimeline)
+	pageOfPermissive: true, 	//determines if the pageOf will take into account subPages (tlPermissive)
+	navigationMode: 1, //1 is legacy, 2 is P930, 3 is newNav
+
 
 	/*------------------ TIMELINE Object -----------------*/
 	//deprecated.
 	activateTimeline: false,
-	tlContent: 		  true, 	//is the timeline within the content (not in the frame).
-	tlPlace: 		  "",		//this is the spot where we need to append and add the timeline div. default is below the first h1
+	tlContent: true, 	//is the timeline within the content (not in the frame).
+	tlPlace: "",		//this is the spot where we need to append and add the timeline div. default is below the first h1
 
-	
+
 	/*------------------ External Links-----------------*/
 	extMethod: "",		//default is target=_blank, other valudes : "lightbox" "popup". overridé local avec data-extmethod="value"
 
@@ -131,8 +131,8 @@ define({
 		// before it's considered visible/invisible
 		TOP_MARGIN: 0.1,
 		BOTTOM_MARGIN: 0.1,
-        //Enables/disables the window resize warning & refresh dialog
-        windowResizeDialog: true
+		//Enables/disables the window resize warning & refresh dialog
+		windowResizeDialog: true
 
 
 	}

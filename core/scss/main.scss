@@ -9,14 +9,14 @@
 
 @import "../../common/scss/base/_base";
 
-@import "../scss/fixes/_fixes";
+@import "./fixes/_fixes";
 
-@import "../scss/icons/_icons";
+@import "./icons/_icons";
 
-@import "../scss/layout/_layout";
+@import "./layout/_layout";
 
 //prepare the field and then add the widgets/modules
-@import "../scss/widgets/_widgets";
+@import "./widgets/_widgets";
 
-@import "../scss/modules/_modules";
-@import "../scss/launch";
+@import "./modules/_modules";
+@import "./launch";

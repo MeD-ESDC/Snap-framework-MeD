@@ -1,3 +1,13 @@
-@import "../utils/_functions";
-@import "../utils/mixins/_mixins";
-@import "../utils/_shorthands";
+@import "./_functions";
+@import "./mixins/_mixins";
+@import "./_shorthands";
+
+//////////// WET Widget fixes ////////////
+.wb-tabs.carousel-s2.wb-tabs-inited{
+    padding-bottom: 4.375em;
+    .control{
+        &.nxt,&.prv,&.tab-count{
+            display:table-cell !important; vertical-align:middle;
+        }  
+    }
+}
