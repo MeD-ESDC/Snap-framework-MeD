@@ -1,0 +1,104 @@
+/* CSS Document */
+#dynamic_content .top-banner {
+  background: url("../content/medias/images/bgtest_1.png");
+  background-size: cover;
+  background-position: top;
+}
+#dynamic_content h1 {
+  font-size: 1.9em;
+  color: black;
+  margin-bottom: 0px;
+}
+#dynamic_content .hr-style {
+  border-top: 1px solid #AF3C43;
+}
+#dynamic_content .carousel-s2.wb-tabs [role='tablist'] > li.plypause a {
+  margin-left: 600px;
+}
+
+.wb-tabs details[open] {
+  border-top-left-radius: 0;
+}
+
+.wb-tabs > .tabpanels {
+  overflow: hidden;
+  position: relative;
+}
+
+.wb-tabs [role="tablist"] {
+  border-spacing: 10px 0;
+  display: table;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.wb-tabs [role="tablist"] > li {
+  background: #ebf2fc;
+  border-color: #ccc;
+  border-style: solid;
+  border-width: 1px;
+  color: #000;
+  cursor: pointer;
+  display: table-cell;
+  left: -10px;
+  position: relative;
+  text-align: center;
+}
+
+.wb-tabs [role="tablist"] > li a {
+  color: #000;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.wb-tabs [role="tablist"] > li:focus,
+.wb-tabs [role="tablist"] > li:hover {
+  background: #ccc;
+  background: rgba(204, 204, 204, 0.9);
+}
+
+.wb-tabs [role="tablist"] > li.active {
+  background: #fff;
+  border-bottom: 0;
+  cursor: default;
+  padding-bottom: 1px;
+  z-index: 2;
+}
+
+.wb-tabs [role="tablist"] > li.active a {
+  border-color: #335075;
+  border-style: solid;
+  border-width: 4px 0 0 0;
+  cursor: default;
+  padding-top: 6px;
+}
+
+input[type='radio']:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #d1d3d1;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+
+input[type='radio']:checked:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #ffa500;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}

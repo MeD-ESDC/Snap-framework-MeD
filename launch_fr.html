@@ -1,48 +1,62 @@
 <!DOCTYPE html>
-<html lang="fr" class="no-js">
+<html lang="en" class="no-js">
+
 <head>
-    <meta charset="utf-8" />
-   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <title>Page de démarrage de la plateforme d'apprentissage EFPC</title>
-    
+	<meta charset="utf-8" />
+
+	<title>Lanceur de cadre</title>
+
 	<script src="./core/js/lib/require.js"></script>
-    
-    <script src="./core/js/scorm/APIWrapper.js" type="text/javascript"></script>
-    <script type="text/javascript">
-		require(['core/js/require-configs'], function() {
-			require(['jquery', "settings-core", 'settings-general',	"settingsOverride", 'popper/popupwindowscripts'], function($, CoreSettings, GeneralSettings, settingsOverride, PopupWindowScripts) {
-				$(document).ready(function(e) {
+
+	<script src="./core/js/scorm/APIWrapper.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		require(['core/js/require-configs'], function () {
+			require(['jquery', "settings-core", 'settings-general', "settingsOverride", 'popper/popupwindowscripts'], function ($, CoreSettings, GeneralSettings, settingsOverride, PopupWindowScripts) {
+				$(document).ready(function (e) {
+					checkLaunch('index_fr.html');
 					$("#series-title").html(CoreSettings.seriesTitle_fr);
 					$("#coursename").html(CoreSettings.courseTitle_fr);
 					$("#subcoursename").html(CoreSettings.courseSubtitle_fr);
-					checkLaunch('index_fr.html');
 				});
 			});
 		});
-    </script>
-	<link rel="stylesheet" class="theme" id="theme-style" href="./theme/launch.css" />
-   	<link rel="stylesheet" class="theme" id="theme-style" href="./theme/theme.css" />	
-</head>
-<body class="launchpage">
+	</script>
+	<link rel="stylesheet" class="theme" id="launch-style" href="./theme/launch.css" />
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"
+		type="text/css">
 
-	<span id="noclose" class="obfuscated">Ne pas fermer cette fenêtre. Si vous quittez, la session en cours sera fermée.</span>
-    <header id="wordmark"><img src="./WET/assets/CSPS_FIP_BlackRed_F.png" alt="Mot-symbole de l'École de la fonction publique" /></header>
-	<main id="splash-content">
-    	
-        <h1 id="title-area">
-        	<span id="title-welcome">Bienvenue à</span>
-            <span id="series-title"></span>
-            <span id="coursename">La plateforme d'apprentissage en ligne de l'EFPC</span>
-            <span id="subcoursename"></span>
-        </h1>
-        <div id="launch-area">
-        	<div id="launch-placement">
-            	<span id="manualpop">Si le cours ne s'ouvre pas automatiquement, cliquez sur </span>
-                <a href="#" onclick="launchPop('index_fr.html')" id="launch-btn">Démarrer</a>
-        	</div>
-        </div>
-    </main>
-    <footer id="canada-logo"><img src="./WET/assets/canada_flag.png" alt="Canada Logo" /></footer>
+</head>
+
+<body>
+
+	<main>
+		<div id="splash-content-1" class="container-fluid">
+			<div class="container">
+				<div class="row">
+					<hgroup class="col-md-2 alignCenter">
+						<img src="content/medias/images/launch_2.png" alt="image of rocket launching">
+						<h1>Ne fermez pas cette fenêtre.</h1>
+						<h1>Si vous le fermez, vous mettrez fin à votre session.</h1>
+					</hgroup>
+				</div>
+			</div>
+		</div>
+	</main>
+	<div id="splash-content-2" class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<hgroup class="col-md-2 alignCenter">
+					<h2>Si le cours n'a pas démarré automatiquement, sélectionnez le bouton Lancer ci-dessous.</h2>
+					<a href="#" onclick="launchPop('index_fr.html')" id="launch-btn">Démarrer</a>
+				</hgroup>
+			</div>
+		</div>
+		<img style="margin-top: 220px;margin-left: 10px" src="content/medias/images/fip_ESDC_fra_032-b.png"
+			alt="Employment and Social Development Canada" width="30%">
+		<img style="margin-left: 1109px;" src="content/medias/images/Canada Wordmark_b-032.png" alt="Canada logo"
+			width="10%">
+	</div>
 
 </body>
+
 </html>

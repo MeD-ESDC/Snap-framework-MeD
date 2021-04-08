@@ -1,7 +1,7 @@
-<section data-id='{{sitemapID}}' class='modal-dialog modal-content overlay-def mfp-with-anim mfp-zoom-in'>
+<section data-id='{{sitemapID}}' class='modal-dialog modal-content overlay-def mfp-with-anim mfp-zoom-in' role="dialog" aria-labelledby="{{labels.nav.sitemap}}" aria-modal="true">
     <header class='modal-header'>
         <h2 class='modal-title' id='lbx-title'>{{labels.nav.sitemap}}</h2>
-        <button title="Close overlay (escape key)" type="button" class="mfp-close">×<span class="wb-inv"> Close overlay (escape key)</span></button>
+        <button  type="button" class="mfp-close" aria-label="{{{labels.close.sitemap}}} modal window" >×</button>
     </header>
     <div class='modal-body'>
 		<ul id="whole_sitemap" class="index-list">

@@ -85,8 +85,8 @@ define(['utils'], function (Utils) {
 				"Add/remove from favourites":
 				"Ajouter/enlever des favoris",
 			"toolboxInstr": (Utils.lang === "en")?
-				"Press down to open":
-				"Appuyez sur la flèche vers le bas pour ouvrir",
+				"Select to open":
+				"sélectionner pour ouvrir",
 			"externalink": (Utils.lang === "en")?
 				"This link will open in a new window":
 				"Ce lien s'ouvrira dans une nouvelle fenêtre",
@@ -129,6 +129,18 @@ define(['utils'], function (Utils) {
 			"skip": (Utils.lang === "en")?
 					"Skip":
 					"Passer"
+		},
+		"prompt":{
+			"yes": (Utils.lang === "en")? "Yes" : "Oui",
+			"no": (Utils.lang === "en")? "No": "Non"
+		},
+		"close":{
+			"sitemap": (Utils.lang === "en")?
+				"close Sitemap":
+				"Fermer Plan de site",
+			"dynamicPopup" : (Utils.lang === "en")?
+				"close":
+				"Fermer",
 		}
 	};
 

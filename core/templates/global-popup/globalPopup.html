@@ -1,0 +1,18 @@
+<section data-id='{{popupId}}'
+  class='modal-dialog modal-content overlay-def mfp-with-anim mfp-zoom-in global-dynamic-popup' role="dialog"
+  aria-labelledby="{{labels.nav.sitemap}}" aria-modal="true">
+  <header class='modal-header'>
+    <h2 class='modal-title'>{{popupTitle}}</h2>
+    <button type="button" class="mfp-close"
+      aria-label="{{{labels.close.dynamicPopup}}} {{{popupTitle}}} modal window">×</button>
+  </header>
+  <div class='modal-body'>
+    {{message}}
+  </div>
+  <div class="modal-footer">
+    {{#ifEquals type "prompt"}}
+    <button class="confirm btn btn-sm btn-primary pull-left" data-event={{event}}>{{{labels.prompt.yes}}}</button>
+    <button class="btn btn-sm btn-primary pull-left popup-modal-dismiss">{{{labels.prompt.no}}}</button>
+    {{/ifEquals}}
+  </div>
+</section>

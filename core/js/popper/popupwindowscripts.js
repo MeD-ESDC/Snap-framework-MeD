@@ -17,17 +17,20 @@ define(['settings-core', 'labels'], function(CoreSettings, labels) {
 		}
 
 		//temporary popper
+		
 		var params = [
-			'height=' + (screen.availHeight),	
-			'width=' + (screen.availWidth),
+			// 'height=' + (screen.height - 90),	
+			// 'width=' + (screen.width - 15),
+			'height=' + "700px",
+			'width=' + "1024px",
 			'scrollbars=1',
+			'status=yes',
 			'resizable=1',
-			'fullscreen=no' //,
-		   // 'fullscreen=yes' // only works in IE
+		    'fullscreen=no' // only works in IE
 		].join(',');
 
 		popup = window.open(target, 'popup_window_' + CoreSettings.courseLegacyCode, params);
-		popup.moveTo(-3, 0);
+		popup.moveTo(-3, -5);
 		//window.top.resizeTo(100, 50);
 		//window.top.moveTo(9999, 9999);
 		//popup.addEventListener('beforeunload',closeCourse,false);				
@@ -56,7 +59,7 @@ define(['settings-core', 'labels'], function(CoreSettings, labels) {
 	function closeCourse(){
 		if(popup && !popup.window.amINavigating){			
 			saveScormValues();			
-			popup.close();
+			//popup.close();
 			//window.top.close();
 		}		
 		
@@ -82,7 +85,7 @@ define(['settings-core', 'labels'], function(CoreSettings, labels) {
 	}
 	function closeLauncher(e){
 		if(popup){
-			popup.close();
+			//popup.close();
 			//window.top.close();
 		}
 	}

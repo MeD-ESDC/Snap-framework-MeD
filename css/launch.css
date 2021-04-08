@@ -1,0 +1,76 @@
+html {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  font-family: "open sans", "Segoe UI", "Arial";
+  background-image: url("../content/medias/images/section0_bg.png");
+  background-size: cover;
+  background-attachment: fixed;
+  background-color: white;
+  background-repeat: no-repeat;
+}
+
+.container.loaded .spinner {
+  background-color: red;
+  left: -90000px;
+}
+
+@media only screen and (min-width: 1000px) {
+  .container {
+    width: 1000px;
+  }
+}
+#splash-content-1 {
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-top: 50px;
+  padding-bottom: 70px;
+  background-color: #3398c6;
+  background-size: 25%;
+  background-repeat: repeat;
+}
+#splash-content-1 h1 {
+  color: white;
+  font-size: 2.2em;
+  color: white;
+  margin-bottom: 0px;
+  margin-top: 15px;
+}
+#splash-content-1 .container {
+  margin-left: auto;
+  margin-right: auto;
+}
+#splash-content-1 .alignCenter {
+  text-align: center;
+}
+
+#splash-content-2 h2 {
+  margin-top: 25px;
+  color: #335075;
+}
+#splash-content-2 #launch-btn {
+  margin-top: 40px;
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 150px;
+  height: 40px;
+  border-radius: 50px;
+  background-color: #3398C6;
+}
+#splash-content-2 #launch-btn:link, #splash-content-2 #launch-btn:hover, #splash-content-2 #launch-btn:active, #splash-content-2 #launch-btn:visited {
+  color: white;
+  font-size: 1.6em;
+  font-weight: bold;
+  text-decoration: none;
+}
+#splash-content-2 .container {
+  margin-left: auto;
+  margin-right: auto;
+}
+#splash-content-2 .alignCenter {
+  text-align: center;
+}

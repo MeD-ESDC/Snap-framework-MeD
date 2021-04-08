@@ -3,7 +3,7 @@ body {
 	color: $base-text-color;
 }
 .error { color: $error-color; }
-//.warning { color: $warning-color; }
+.warning { color: $warning-color; }
 
 a {
     color: $link-color;
@@ -20,35 +20,10 @@ a {
 	  background-repeat: no-repeat;
 	  width: 15px;
 	  height: 15px;
-		html[lang='fr'] &{
-			content:'(Ce contenu ouvrira dans une nouvelle fenêtre)';
-		}
-		html[lang='en'] &{
-			content:'(This content will open in a new window)';
-		}
-		overflow:hidden;
-		color:transparent;
+	  content: '';
 	  display: inline-block;
 	  margin-left: 3px;
 	}
-	/*****************External open in a new window*******/
-	&.csps-glossary::after {
-	  background: url('base/icon_glossary_link.svg');
-	  background-size: contain;
-	  background-repeat: no-repeat;
-	  width: 15px;
-	  height: 15px;
-		html[lang='fr'] &{
-			content:'(Voir la définition)';
-		}
-		html[lang='en'] &{
-			content:'(See definition)';
-		}
-		overflow:hidden;
-		color:transparent;
-	  display: inline-block;
-	  margin-left: 3px;
-	}	
 }
 
 .download-icon {

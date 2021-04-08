@@ -6014,8 +6014,8 @@ q:before, q:after {
 * Copyright 2010, 2013 jQuery Foundation, Inc. and other contributors
 * Released under the MIT license.
 * http://jquery.org/license
+*
 */
-
 .pop.in, .fade.in, .fade.reverse.out {
   opacity: 1;
   visibility: visible; }
@@ -7700,8 +7700,7 @@ body.wb-modal .modal-dialog summary {
     content: "";
     font-family: "Glyphicons Halflings";
     font-size: 65px;
-    text-align: center; 
-	top:75px;}
+    text-align: center; }
   .wb-mltmd.video.playing .errmsg {
     display: none; }
   .wb-mltmd.video.waiting .display {
