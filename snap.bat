@@ -1,1 +1,0 @@
-node snap.js
