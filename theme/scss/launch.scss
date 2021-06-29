@@ -1,93 +1,73 @@
 @import "./_vars";
+html {
+    margin: 0px;
+    padding: 0px;
+}
 
-html{
-	margin:0px;
-	padding:0px;
+.centered {
+    text-align: center;
 }
 
 body {
-	font-family: $fontFamily;	
-	background-image: url("../content/medias/images/section0_bg.png");
-	background-size: cover;
-	background-attachment:fixed;
-	background-color:$body-background-color;
-	background-repeat:no-repeat;
+    font-family: $fontFamily;
+    background-color: $banner-text-color;
+    h1 {
+        color: $banner-text-color;
+        font-size: 2.2em;
+        margin-top: 15px;
+    }
+    h2 {
+        margin: 50px;
+        margin-top: 0px;
+        color: $instructions-text-color;
+    }
 }
 
-.container.loaded .spinner{background-color:red; left:-90000px;} 
-
-@media only screen and (min-width : 1000px) {
-
-    .container { width: 1000px; } 
-
+.container.loaded .spinner {
+    display: none;
 }
 
-#splash-content-1
-{
-	margin-top:auto;
-	margin-bottom:auto;
-	padding-top: 50px;
-	padding-bottom: 70px;
-	background-color:$primary-color;
-	//background-image:url("../content/medias/images/TileBackground.png");	
-	background-size:25%;
-	background-repeat:repeat;
-
-	h1{
-		color:white;
-		font-size:2.2em;
-		color:$primary-color-text;
-		margin-bottom:0px;
-		margin-top:15px;
-	}
-		
-	.container{
-		margin-left:auto;
-		margin-right:auto;
-	}
-	
-	.alignCenter
-	{
-		text-align:center;
-	}
+#launch-btn {
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $interactive-color;
+    &:link,
+    &:hover,
+    &:active,
+    &:visited {
+        color: white;
+        font-size: 1.6em;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    &:hover {
+        background-color: $interactive-hover-color;
+    }
 }
 
-#splash-content-2
-{
-	h2{
-		margin-top:25px;
-		color:#335075;
-	}
-	
-	#launch-btn{
-		margin-top:40px;
-		//border:2px solid black;
-		position:relative;
-		display:block;
-		margin-left:auto;
-		margin-right:auto;
-		width:150px;
-		height:40px;
-		
-		border-radius:50px;
-		background-color:#3398C6;
-		
-		&:link, &:hover, &:active, &:visited
-		{
-			color:white;
-			font-size:1.6em;
-			font-weight: bold;
-			text-decoration:none;
-		}
-	}
-		
-	.container{
-		margin-left:auto;
-		margin-right:auto;
-	}
-	
-	.alignCenter
-	{
-		text-align:center;
-	}
+#splash-content-1 {
+    background-color: $banner-color;
+    padding: 40px;
+}
+
+#splash-content-2 {
+    padding: 40px;
+}
+
+#splash-content-3 {
+    padding: 40px;
+    .leftimg {
+        float: left;
+        width: auto;
+        height: 22px;
+    }
+    .rightimg {
+        float: right;
+        width: auto;
+        height: 22px;
+    }
 }

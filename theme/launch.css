@@ -6,65 +6,76 @@ $article-color-4: #66cdd6;
 */
 html {
   margin: 0px;
-  padding: 0px; }
+  padding: 0px;
+}
+
+.centered {
+  text-align: center;
+}
 
 body {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  background-image: url("../content/medias/images/section0_bg.png");
-  background-size: cover;
-  background-attachment: fixed;
-  background-color: white;
-  background-repeat: no-repeat; }
+  background-color: #fff;
+}
+
+body h1 {
+  color: #fff;
+  font-size: 2.2em;
+  margin-top: 15px;
+}
+
+body h2 {
+  margin: 50px;
+  margin-top: 0px;
+  color: #333333;
+}
 
 .container.loaded .spinner {
-  background-color: red;
-  left: -90000px; }
+  display: none;
+}
 
-@media only screen and (min-width: 1000px) {
-  .container {
-    width: 1000px; } }
-#splash-content-1 {
-  margin-top: auto;
-  margin-bottom: auto;
-  padding-top: 50px;
-  padding-bottom: 70px;
-  background-color: orange;
-  background-size: 25%;
-  background-repeat: repeat; }
-  #splash-content-1 h1 {
-    color: white;
-    font-size: 2.2em;
-    color: orange;
-    margin-bottom: 0px;
-    margin-top: 15px; }
-  #splash-content-1 .container {
-    margin-left: auto;
-    margin-right: auto; }
-  #splash-content-1 .alignCenter {
-    text-align: center; }
-
-#splash-content-2 h2 {
-  margin-top: 25px;
-  color: #335075; }
-#splash-content-2 #launch-btn {
-  margin-top: 40px;
-  position: relative;
-  display: block;
+#launch-btn {
+  padding: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 50px;
   margin-left: auto;
   margin-right: auto;
-  width: 150px;
-  height: 40px;
-  border-radius: 50px;
-  background-color: #3398C6; }
-  #splash-content-2 #launch-btn:link, #splash-content-2 #launch-btn:hover, #splash-content-2 #launch-btn:active, #splash-content-2 #launch-btn:visited {
-    color: white;
-    font-size: 1.6em;
-    font-weight: bold;
-    text-decoration: none; }
-#splash-content-2 .container {
-  margin-left: auto;
-  margin-right: auto; }
-#splash-content-2 .alignCenter {
-  text-align: center; }
+  background-color: #1c4e8a;
+}
 
-/*# sourceMappingURL=launch.css.map */
+#launch-btn:link, #launch-btn:hover, #launch-btn:active, #launch-btn:visited {
+  color: white;
+  font-size: 1.6em;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#launch-btn:hover {
+  background-color: #2976d3;
+}
+
+#splash-content-1 {
+  background-color: #0f2a4a;
+  padding: 40px;
+}
+
+#splash-content-2 {
+  padding: 40px;
+}
+
+#splash-content-3 {
+  padding: 40px;
+}
+
+#splash-content-3 .leftimg {
+  float: left;
+  width: auto;
+  height: 22px;
+}
+
+#splash-content-3 .rightimg {
+  float: right;
+  width: auto;
+  height: 22px;
+}
